@@ -1,0 +1,11 @@
+librosa
+soundfile
+noisereduce
+pandas
+numpy
+scikit-learn
+imbalanced-learn
+openai-whisper
+matplotlib
+seaborn
+joblib
