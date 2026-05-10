@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emergency Call Urgency Classifier</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f1117;
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    header p {
+      margin-top: 8px;
+      color: #888;
+      font-size: 0.95rem;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: #1e2130;
+      border: 1px solid #2e3250;
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.78rem;
+      color: #aaa;
+    }
+
+    /* Drop zone */
+    .drop-zone {
+      width: 100%;
+      max-width: 560px;
+      border: 2px dashed #2e3250;
+      border-radius: 16px;
+      background: #1a1d2e;
+      padding: 50px 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: #4e6ef2;
+      background: #1e2240;
+    }
+
+    .drop-zone .icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .drop-zone h2 {
+      font-size: 1.1rem;
+      color: #ddd;
+      margin-bottom: 8px;
+    }
+
+    .drop-zone p {
+      color: #666;
+      font-size: 0.85rem;
+    }
+
+    .drop-zone input[type="file"] {
+      display: none;
+    }
+
+    .btn-upload {
+      margin-top: 20px;
+      background: #4e6ef2;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-upload:hover { background: #3a5bd9; }
+
+    /* Selected file pill */
+    .file-pill {
+      display: none;
+      margin-top: 14px;
+      background: #252840;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 0.85rem;
+      color: #aaa;
+      max-width: 560px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .file-pill span { color: #fff; font-weight: 600; }
+
+    /* Analyse button */
+    .btn-analyse {
+      display: none;
+      margin-top: 16px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .btn-analyse:hover { background: #c0392b; }
+
+    /* Spinner */
+    .spinner-wrap {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+      gap: 14px;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    .spinner {
+      width: 48px; height: 48px;
+      border: 5px solid #2e3250;
+      border-top-color: #4e6ef2;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Result card */
+    .result-card {
+      display: none;
+      width: 100%;
+      max-width: 560px;
+      margin-top: 30px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #2e3250;
+    }
+
+    .result-header {
+      padding: 28px;
+      text-align: center;
+    }
+
+    .result-header .urgency-emoji { font-size: 3rem; }
+
+    .result-header .urgency-label {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+
+    .result-header .urgency-message {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .result-body {
+      background: #1a1d2e;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .result-section h3 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    /* Confidence bars */
+    .conf-bar-wrap { display: flex; flex-direction: column; gap: 10px; }
+
+    .conf-row { display: flex; align-items: center; gap: 12px; }
+
+    .conf-label { width: 70px; font-size: 0.85rem; color: #ccc; }
+
+    .conf-track {
+      flex: 1;
+      background: #252840;
+      border-radius: 6px;
+      height: 10px;
+      overflow: hidden;
+    }
+
+    .conf-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.8s ease;
+    }
+
+    .conf-pct { width: 40px; text-align: right; font-size: 0.82rem; color: #888; }
+
+    /* Transcript box */
+    .transcript-box {
+      background: #13151f;
+      border: 1px solid #2e3250;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 0.88rem;
+      color: #bbb;
+      line-height: 1.6;
+      min-height: 50px;
+      font-style: italic;
+    }
+
+    /* Keywords */
+    .keywords-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .keyword-count {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #f39c12;
+    }
+
+    .keyword-desc { font-size: 0.85rem; color: #888; }
+
+    /* Reset button */
+    .btn-reset {
+      background: transparent;
+      border: 1px solid #2e3250;
+      color: #888;
+      padding: 10px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+      margin-top: 8px;
+    }
+
+    .btn-reset:hover { border-color: #4e6ef2; color: #fff; }
+
+    /* Error */
+    .error-box {
+      display: none;
+      width: 100%;
+      max-width: 560px;
+      margin-top: 20px;
+      background: #2d1a1a;
+      border: 1px solid #5c2a2a;
+      border-radius: 12px;
+      padding: 18px 20px;
+      color: #e88;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      margin-top: 60px;
+      color: #333;
+      font-size: 0.78rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🚨 Emergency Call Urgency Classifier</h1>
+    <p>Upload an emergency audio call — get instant urgency classification</p>
+    <div class="badge-row">
+      <span class="badge">🇱🇰 Sinhala</span>
+      <span class="badge">🇱🇰 Tamil</span>
+      <span class="badge">Singlish</span>
+      <span class="badge">Tanglish</span>
+      <span class="badge">English</span>
+    </div>
+  </header>
+
+  <!-- Drop zone -->
+  <div class="drop-zone" id="dropZone">
+    <div class="icon">🎙️</div>
+    <h2>Drag & drop your audio file here</h2>
+    <p>Supports .ogg, .wav, .mp3, .m4a</p>
+    <input type="file" id="fileInput" accept=".ogg,.wav,.mp3,.m4a,.webm" />
+    <button class="btn-upload" onclick="document.getElementById('fileInput').click()">
+      Browse Files
+    </button>
+  </div>
+
+  <div class="file-pill" id="filePill">
+    Selected: <span id="fileName"></span>
+  </div>
+
+  <button class="btn-analyse" id="btnAnalyse" onclick="classify()">
+    Classify Urgency
+  </button>
+
+  <!-- Spinner -->
+  <div class="spinner-wrap" id="spinner">
+    <div class="spinner"></div>
+    <span>Analysing audio — transcribing speech and extracting features...</span>
+  </div>
+
+  <!-- Result -->
+  <div class="result-card" id="resultCard">
+    <div class="result-header" id="resultHeader">
+      <div class="urgency-emoji" id="resultEmoji"></div>
+      <div class="urgency-label" id="resultLabel"></div>
+      <div class="urgency-message" id="resultMessage"></div>
+    </div>
+    <div class="result-body">
+
+      <div class="result-section">
+        <h3>Confidence Breakdown</h3>
+        <div class="conf-bar-wrap">
+          <div class="conf-row">
+            <span class="conf-label">High</span>
+            <div class="conf-track">
+              <div class="conf-fill" id="barHigh" style="background:#e74c3c; width:0%"></div>
+            </div>
+            <span class="conf-pct" id="pctHigh">0%</span>
+          </div>
+          <div class="conf-row">
+            <span class="conf-label">Medium</span>
+            <div class="conf-track">
+              <div class="conf-fill" id="barMedium" style="background:#f39c12; width:0%"></div>
+            </div>
+            <span class="conf-pct" id="pctMedium">0%</span>
+          </div>
+          <div class="conf-row">
+            <span class="conf-label">Low</span>
+            <div class="conf-track">
+              <div class="conf-fill" id="barLow" style="background:#2ecc71; width:0%"></div>
+            </div>
+            <span class="conf-pct" id="pctLow">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-section">
+        <h3>Speech Transcript (Whisper)</h3>
+        <div class="transcript-box" id="transcript">—</div>
+      </div>
+
+      <div class="result-section">
+        <h3>Urgency Keywords Detected</h3>
+        <div class="keywords-row">
+          <span class="keyword-count" id="keywordCount">0</span>
+          <span class="keyword-desc">urgency keywords found in transcript</span>
+        </div>
+      </div>
+
+      <button class="btn-reset" onclick="reset()">← Classify Another Call</button>
+    </div>
+  </div>
+
+  <div class="error-box" id="errorBox"></div>
+
+  <footer>Emergency Call Urgency Detection System &nbsp;·&nbsp; R26_DS_011</footer>
+
+<script>
+  let selectedFile = null;
+
+  const dropZone   = document.getElementById('dropZone');
+  const fileInput  = document.getElementById('fileInput');
+  const filePill   = document.getElementById('filePill');
+  const fileName   = document.getElementById('fileName');
+  const btnAnalyse = document.getElementById('btnAnalyse');
+
+  // Drag and drop
+  dropZone.addEventListener('dragover', e => {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+  });
+
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) setFile(file);
+  });
+
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files[0]) setFile(fileInput.files[0]);
+  });
+
+  function setFile(file) {
+    selectedFile = file;
+    fileName.textContent = file.name;
+    filePill.style.display = 'block';
+    btnAnalyse.style.display = 'block';
+    document.getElementById('errorBox').style.display = 'none';
+    document.getElementById('resultCard').style.display = 'none';
+  }
+
+  async function classify() {
+    if (!selectedFile) return;
+
+    // Show spinner
+    btnAnalyse.style.display = 'none';
+    document.getElementById('spinner').style.display = 'flex';
+    document.getElementById('resultCard').style.display = 'none';
+    document.getElementById('errorBox').style.display = 'none';
+
+    const formData = new FormData();
+    formData.append('audio', selectedFile);
+
+    try {
+      const res  = await fetch('/classify', { method: 'POST', body: formData });
+      const data = await res.json();
+
+      document.getElementById('spinner').style.display = 'none';
+
+      if (data.error) {
+        showError(data.error);
+        return;
+      }
+
+      showResult(data);
+
+    } catch (err) {
+      document.getElementById('spinner').style.display = 'none';
+      showError('Something went wrong. Please try again.');
+    }
+  }
+
+  function showResult(data) {
+    const card   = document.getElementById('resultCard');
+    const header = document.getElementById('resultHeader');
+
+    header.style.background = data.color;
+
+    document.getElementById('resultEmoji').textContent   = data.emoji;
+    document.getElementById('resultLabel').textContent   = data.urgency.toUpperCase() + ' URGENCY';
+    document.getElementById('resultMessage').textContent = data.message;
+    document.getElementById('transcript').textContent    = data.transcript || '(no transcript)';
+    document.getElementById('keywordCount').textContent  = data.keywords;
+
+    // Confidence bars (animate after display)
+    card.style.display = 'block';
+    setTimeout(() => {
+      const conf = data.confidence;
+      setBar('High',   conf['High']   || 0);
+      setBar('Medium', conf['Medium'] || 0);
+      setBar('Low',    conf['Low']    || 0);
+    }, 50);
+  }
+
+  function setBar(cls, pct) {
+    document.getElementById('bar' + cls).style.width = pct + '%';
+    document.getElementById('pct' + cls).textContent = pct + '%';
+  }
+
+  function showError(msg) {
+    const box = document.getElementById('errorBox');
+    box.textContent = '⚠️ ' + msg;
+    box.style.display = 'block';
+    btnAnalyse.style.display = 'block';
+  }
+
+  function reset() {
+    selectedFile = null;
+    fileInput.value = '';
+    filePill.style.display   = 'none';
+    btnAnalyse.style.display = 'none';
+    document.getElementById('resultCard').style.display = 'none';
+    document.getElementById('errorBox').style.display   = 'none';
+  }
+</script>
+</body>
+</html>
