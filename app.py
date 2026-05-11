@@ -137,6 +137,11 @@ def extract_textual(audio: np.ndarray):
 
 # ── Routes ────────────────────────────────────────────────────────────────────
 
+@app.route("/favicon.ico")
+def favicon():
+    return "", 204
+
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -194,4 +199,4 @@ def classify():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000, threaded=False)

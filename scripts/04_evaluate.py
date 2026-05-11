@@ -47,8 +47,22 @@ def main():
     y_pred_labels = le.inverse_transform(y_pred)
 
     # Classification report
+    report_dict = classification_report(y, y_pred_labels, target_names=labels, output_dict=True)
+    # Print without support column
+    header = f"{'':>12}  {'precision':>9}  {'recall':>6}  {'f1-score':>8}"
+    print(header)
+    print()
+    for cls in labels:
+        d = report_dict[cls]
+        print(f"  {cls:>10}  {d['precision']:>9.2f}  {d['recall']:>6.2f}  {d['f1-score']:>8.2f}")
+    print()
+    for avg in ["accuracy", "macro avg", "weighted avg"]:
+        d = report_dict[avg]
+        if avg == "accuracy":
+            print(f"  {'accuracy':>10}  {'':>9}  {'':>6}  {d:>8.2f}")
+        else:
+            print(f"  {avg:>10}  {d['precision']:>9.2f}  {d['recall']:>6.2f}  {d['f1-score']:>8.2f}")
     report = classification_report(y, y_pred_labels, target_names=labels)
-    print(report)
     with open(os.path.join(REPORTS_DIR, "classification_report.txt"), "w") as f:
         f.write(report)
 

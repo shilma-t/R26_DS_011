@@ -11,6 +11,14 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+
+# Use Noto Sans which supports Tamil and Sinhala on Windows
+_noto = [f.name for f in fm.fontManager.ttflist if "Noto" in f.name]
+if _noto:
+    plt.rcParams["font.family"] = _noto[0]
+else:
+    plt.rcParams["font.family"] = "Segoe UI"
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 FEATURES_CSV = os.path.join("..", "features.csv")
@@ -136,21 +144,28 @@ def main():
     # ── Plot ──────────────────────────────────────────────────────────────────
     fig, axes = plt.subplots(1, 2, figsize=(16, 8))
 
+    # Filter to ASCII-only for chart (Tamil/Sinhala shown in CSV)
+    def ascii_only(pairs, n=15):
+        return [(w, s) for w, s in pairs if w.isascii()][:n]
+
+    high_chart = ascii_only(high_keywords)
+    low_chart  = ascii_only(low_keywords)
+
     # High urgency keywords
-    words_h  = [w for w, _ in high_keywords[:20]]
-    scores_h = [s for _, s in high_keywords[:20]]
+    words_h  = [w for w, _ in high_chart]
+    scores_h = [s for _, s in high_chart]
     colors_h = ["#c0392b" if w in CURRENT_KEYWORDS else "#e74c3c" for w in words_h]
     axes[0].barh(words_h[::-1], scores_h[::-1], color=colors_h[::-1])
-    axes[0].set_title("Top 20 HIGH Urgency Keywords\n(dark = already in list, bright = newly discovered)",
+    axes[0].set_title("Top HIGH Urgency Keywords (English)\n(Tamil/Sinhala keywords saved in CSV)",
                        fontsize=11, fontweight="bold")
     axes[0].set_xlabel("TF-IDF Discriminative Score")
     axes[0].axvline(0, color="white", linewidth=0.5)
 
     # Low urgency keywords
-    words_l  = [w for w, _ in low_keywords[:20]]
-    scores_l = [s for _, s in low_keywords[:20]]
+    words_l  = [w for w, _ in low_chart]
+    scores_l = [s for _, s in low_chart]
     axes[1].barh(words_l[::-1], scores_l[::-1], color="#2ecc71")
-    axes[1].set_title("Top 20 LOW Urgency Keywords\n(words that signal non-emergency)",
+    axes[1].set_title("Top LOW Urgency Keywords (English)\n(Tamil/Sinhala keywords saved in CSV)",
                        fontsize=11, fontweight="bold")
     axes[1].set_xlabel("TF-IDF Discriminative Score")
 

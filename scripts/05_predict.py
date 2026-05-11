@@ -68,8 +68,8 @@ def extract_acoustic(y: np.ndarray, sr: int) -> dict:
     return feats
 
 
-def extract_textual(wav_path: str, model) -> dict:
-    result = model.transcribe(wav_path, task="transcribe")
+def extract_textual(audio: np.ndarray, model) -> dict:
+    result = model.transcribe(audio.astype(np.float32), task="transcribe")
     text   = result.get("text", "").lower()
     words  = text.split()
     feats  = {}
@@ -102,13 +102,8 @@ def main(audio_path: str):
     print(f"Preprocessing {audio_path} ...")
     y = preprocess(audio_path)
 
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-        tmp_path = tmp.name
-    sf.write(tmp_path, y, TARGET_SR)
-
     acoustic = extract_acoustic(y, TARGET_SR)
-    textual  = extract_textual(tmp_path, whisper_model)
-    os.unlink(tmp_path)
+    textual  = extract_textual(y, whisper_model)
 
     all_feats = {**acoustic, **textual}
     X_row = np.array([all_feats.get(col, 0.0) for col in feature_cols]).reshape(1, -1)
