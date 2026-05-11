@@ -20,14 +20,22 @@ TARGET_SR   = 16_000
 N_MFCC      = 40
 
 URGENCY_KEYWORDS = [
-    # English
-    "help", "emergency", "fire", "accident", "blood", "dying", "dead",
-    "trapped", "attack", "knife", "gun", "hurt", "injured", "crash",
-    "please", "ambulance", "police", "quickly", "fast", "now",
-    # Sinhala romanised
-    "udaw", "hadisi", "ape", "maru", "wedi", "gini",
-    # Tamil romanised
-    "உதவி", "உதவுங்கள்", "தீ", "விபத்து", "இரத்தம்",
+    # ── English — confirmed from actual Whisper transcripts ───────────────────
+    "help", "fire", "inside", "trapped", "quickly", "emergency",
+    "blood", "dying", "dead", "accident", "attack", "hurt", "injured",
+    "crash", "ambulance", "police", "gas", "smoke", "burning", "flood",
+    "workers", "grandmother", "children", "baby", "unconscious",
+    "breathing", "cannot breathe", "stuck", "still inside",
+
+    # ── Sinhala — Whisper hallucinates on Sinhala (outputs Arabic/Cyrillic)
+    # Only fragments confirmed to appear in actual transcripts
+    "api", "rush", "inna",
+
+    # ── Tamil — confirmed from actual Tamil script Whisper output ─────────────
+    "உதவி", "உதவி செய்யுங்கள்", "உதவுங்கள்",
+    "முக்க", "உள்ளே", "நாங்கள்",
+    "வெள்ளம்", "வெள்ளனிர்", "தீ", "இரத்தம்", "விபத்து",
+    "சிறிக்கிறோம்", "தெரிய வில்லை", "சரியாக",
 ]
 
 _whisper_model = None
@@ -88,9 +96,9 @@ def extract_acoustic(y: np.ndarray, sr: int) -> dict:
 
 # ── Textual features ─────────────────────────────────────────────────────────
 
-def extract_textual(wav_path: str) -> dict:
+def extract_textual(audio: np.ndarray) -> dict:
     model = get_whisper_model()
-    result = model.transcribe(wav_path, task="transcribe")
+    result = model.transcribe(audio.astype(np.float32), task="transcribe")
     text   = result.get("text", "").lower()
 
     words = text.split()
@@ -134,7 +142,7 @@ def main():
         y, sr = librosa.load(wav, sr=TARGET_SR, mono=True)
 
         acoustic = extract_acoustic(y, sr)
-        textual  = extract_textual(wav)
+        textual  = extract_textual(y)
 
         combined = {
             "filename":      fname,

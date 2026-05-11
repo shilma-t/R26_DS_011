@@ -9,7 +9,6 @@ import os
 import tempfile
 import numpy as np
 import librosa
-import soundfile as sf
 import noisereduce as nr
 import joblib
 import whisper
@@ -34,18 +33,35 @@ TARGET_SR = 16_000
 N_MFCC    = 40
 
 URGENCY_KEYWORDS = [
-    # English
-    "help", "emergency", "fire", "accident", "blood", "dying", "dead",
-    "trapped", "attack", "knife", "gun", "hurt", "injured", "crash",
-    "please", "ambulance", "police", "quickly", "fast", "now",
-    # Sinhala
-    "udaw", "udhaw", "hadisi", "gini", "ginnak", "wathura", "gangwathura",
-    "maru", "wedi", "husma", "ikmanata", "beraganna", "awidaganna",
-    "lamaya", "lamai", "athule", "yatawela",
-    # Tamil
-    "உதவி", "உதவுங்கள்", "தீ", "விபத்து", "இரத்தம்",
-    "thee", "puhai", "seekiram", "thanni", "wellam", "sikki",
-    "udhawi", "meetpu", "thayawu",
+    # ── English — confirmed from actual Whisper transcripts ───────────────────
+    "help", "fire", "inside", "trapped", "quickly", "emergency",
+    "blood", "dying", "dead", "accident", "attack", "hurt", "injured",
+    "crash", "ambulance", "police", "gas", "smoke", "burning", "flood",
+    "workers", "grandmother", "children", "baby", "unconscious",
+    "breathing", "cannot breathe", "stuck", "still inside",
+
+    # ── Sinhala — Whisper hallucinates on Sinhala audio (outputs Arabic/Cyrillic)
+    # Only romanised fragments that actually appeared in transcripts are kept
+    "api",       # Whisper sometimes outputs this for Sinhala "api" (we)
+    "na",        # negative particle — appears in low urgency Sinhala
+    "rush",      # Singlish urgency marker confirmed in call7
+    "inna",      # Sinhala "inna" (is/are) — appeared in call14
+
+    # ── Tamil — confirmed from actual Tamil script Whisper output ─────────────
+    "உதவி",              # help
+    "உதவி செய்யுங்கள்", # please help us
+    "உதவுங்கள்",         # help (imperative)
+    "முக்க",             # can't breathe / face (suffocation) — confirmed call21
+    "உள்ளே",             # inside / trapped inside — confirmed call23
+    "நாங்கள்",           # we — group in distress — confirmed call23
+    "வெள்ளம்",           # flood
+    "வெள்ளனிர்",         # floodwater — confirmed call23
+    "தீ",                # fire
+    "இரத்தம்",           # blood
+    "விபத்து",           # accident
+    "சிறிக்கிறோம்",      # we are trapped — confirmed call23
+    "தெரிய வில்லை",      # cannot see/don't know — distress marker call21
+    "சரியாக",            # properly (as in "not working properly") — call21
 ]
 
 NON_FEATURE_COLS = {"filename", "urgency_label", "language", "transcript"}
@@ -96,8 +112,8 @@ def extract_acoustic(y):
     return feats
 
 
-def extract_textual(wav_path):
-    result = whisper_model.transcribe(wav_path, task="transcribe")
+def extract_textual(audio: np.ndarray):
+    result = whisper_model.transcribe(audio.astype(np.float32), task="transcribe")
     text   = result.get("text", "").lower()
     words  = text.split()
     feats  = {}
@@ -141,15 +157,11 @@ def classify():
         file.save(tmp_in.name)
         tmp_in_path = tmp_in.name
 
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp_wav:
-        tmp_wav_path = tmp_wav.name
-
     try:
         y = preprocess(tmp_in_path)
-        sf.write(tmp_wav_path, y, TARGET_SR)
 
         acoustic = extract_acoustic(y)
-        textual  = extract_textual(tmp_wav_path)
+        textual  = extract_textual(y)
 
         all_feats = {**acoustic, **textual}
         X = np.array([all_feats.get(col, 0.0) for col in feature_cols]).reshape(1, -1)
@@ -173,12 +185,13 @@ def classify():
         })
 
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
 
     finally:
         os.unlink(tmp_in_path)
-        os.unlink(tmp_wav_path)
 
 
 if __name__ == "__main__":
-    app.run(debug=False, port=5000)
+    app.run(debug=True, port=5000)

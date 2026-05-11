@@ -1,0 +1,100 @@
+filename,duration_sec,language,self_or_reporting_others,speaker_gender,urgency_label,confidence,keywords_heard,notes
+call5.ogg,24,sinhala,s,F,Medium,2,"gange wathura wadi wela , minissu yanawa","Water rising, people evacuating"
+call6.ogg,5,sinhala,s,F,High,3,"Hirawela, Lamai 3, Udhawkaranna","Home flooded, trapped with 3 kids, Help"
+call7.ogg,8,sinhala,s,F,High,3,Wathura athule,Water inside the house
+call8.ogg,6,sinhala,s,F,High,3,Wathura Godak Udata enawa,"Water level rising, location they don't know"
+call9.ogg,8,english,s,F,High,3,"Fire,Grandmother is stuck inside","Fire inside Home, Granma trap"
+call10.ogg,10,english,o,F,High,3,"Fire,3 workers inside",Fire in Warehouse 3 workers maybe inside
+call11.ogg,10,sinhala,s,F,Low,1,Current Giya,no current due to rain
+call13.ogg,6,sinhala,o,F,High,3,"Ginnak, dennek athule",Fire in Warehouse 2 workers inside
+call14.ogg,10,sinhala,s,F,High,3,"Wathura athule, dennek athule",Water inside house 2 people trapped
+call17.ogg,10,singlish,s,F,Medium,2,"Ginnak, Sure na",Maybe fire not sure
+call18.ogg,10,singlish,s,F,Medium,2,"Ginnak, exact place not sure",Maybe fire not sure
+call19.ogg,10,singlish,s,F,Medium,2,"water near back door, im not sure",
+call21.ogg,10,tamil,s,F,High,3,"Thee, Pugai",Fire but don't know where they are
+call22.ogg,10,tamil,s,F,Low,3,minsaram Prachinai,Power cut for few days
+call23.ogg,8,tamil,s,F,High,3,"Wellam ulle, kulandhihal, sikki irikkirom","Flood water in, Stuck with kids"
+call24.ogg,8,tamil,s,F,High,3,"seekiram waarungal, Thee, ulle moowar",fire inside kitchen 3 ppl stuck
+call25.ogg,9,tamil,o,F,High,3,"Thee,ulle sikki",Fire in shop 1 person trapped
+call26.ogg,7,sinhala,s,M,High,3,"Wathura Udata enawa, 4 denek, awidaganna ba","water rising 4 people trapped, dad cant walk"
+call28.ogg,11,sinhala,s,M,Low,3,,Just informing rain is heavy and his garden is flooded
+call29.ogg,10,singlish,o,M,High,3,Ginnak,
+call32.ogg,8,singlish,s,F,High,3,"paara wahala, Wathura Pirila, dennek athule","ground floor fully flooded, roads closed 2 ppl trapped"
+call33.ogg,6,singlish,s,F,High,3,"Ginnak, Husma ganna ba","fire, stuck cant breathe"
+call35.ogg,6,sinhala,s,F,High,3,"Gini, thatha athule","Housefire, dad trapped"
+call36.ogg,7,singlish,s,M,Medium,3,"Wathura, wadi wenna puluwan",Water levels may rise
+call37.ogg,7,singlish,s,M,Low,3,,Just informing flood is getting worse
+call38.ogg,10,singlish,o,M,High,3,Loku Ginnak,neighbours house is on fire
+call39.ogg,3,sinhala,s,M,Medium,2,"udhaw, asaneepai",Mom is sick
+call40.ogg,8,tamil,s,F,Medium,3,Thanni mulam kaal warai,flooded Water near ankle
+call41.ogg,8,tamil,s,F,High,3,Thanni wegamaga uyargiradhu,water rising rapidly
+call42.ogg,7,tamil,s,F,Low,3,,Just information
+call43.ogg,9,tamil,o,F,High,3,"Thee, iruvar ulle","up floor fire, 2 ppl trapped"
+call44.ogg,9,tamil,s,F,High,3,"Sikki, sirumi, thayawuseydhu udane",4 ppl stuck on upper floor
+call45.ogg,2,singlish,s,F,High,2,beraganna,please help
+call46.ogg,3,sinhala,s,F,High,3,"Hirawela, Lamai 3",stuck on top floor with children
+call47.ogg,4,sinhala,s,F,Low,3,,random info
+call48.ogg,4,sinhala,o,F,Medium,1,dhumak,smoke from next door
+call49.ogg,5,sinhala,o,F,High,3,Loku Ginnak,temple on fire
+call50.ogg,3,sinhala,s,F,High,3,"Lamaya, husma ganna ba",child is sick
+call51.ogg,4,sinhala,s,F,High,3,husma ganna ba,muffled voice
+call52.ogg,6,singlish,o,F,Medium,3,Smoke,saw smoke when passing by
+call53.ogg,7,singlish,s,F,Medium,1,flood ekak,Flood
+call54.ogg,5,tamil,s,F,High,2,"thee, seekiram",fire incident at home
+call55.ogg,7,tamil,s,F,Medium,2,ellorum weliye,fire but all safe
+call56.ogg,6,tamil,s,F,High,3,Thanneer wehamaha waruhiradhu,water rising rapidly
+call57.ogg,7,tamil,s,F,Medium,3,"Wella neer, nulaiya aarambithulladhu",water just started coming in
+call58.ogg,7,tamil,o,F,Medium,1,"Puhai, thee theriyawillai",smoke but don't know where fire is coming from
+call59.ogg,4,tamil,s,F,High,2,"Udhawa mudiyuma, Ayyo",Just a question no info
+call60.ogg,5,singlish,s,F,Low,3,,just some information
+call62.ogg,2,singlish,s,F,Medium,2,"please, enna",just asking to come no info
+call63.ogg,19,sinhala,s,F,High,2,"hirawela, kattiya yanawa, wathura awilla, yata wela,udhaw one",some ppl maybe stuck
+call64.ogg,18,singlish,o,F,Medium,2,"Signal na, battery na",they are not in immediate danger
+call66.ogg,15,singlish,s,F,Medium,2,"Contact karanna ba, udhaw one",
+call67.ogg,24,sinhala,s,F,High,3,"Hirawela, wassa wadi, yata wela,wathura,ikmanata","people are stuck, rain increasing, water rising by night it might rise fully"
+call73.ogg,9,sinhala,s,M,Medium,2,arakshitha thana,there house flooded but they are safe now
+call74.ogg,6,sinhala,o,M,High,3,"Gini,ikmanata udhaw",someones house is on fire
+call75.ogg,6,sinhala,s,M,Low,2,"Current Na, Signal Na",info
+call76.ogg,4,sinhala,s,M,Medium,2,"Ikmanata udhaw, bayai","need help, scared"
+call77.ogg,2,sinhala,s,M,High,2,"Ginnak,Ikmanata",fire help
+call78.ogg,5,sinhala,s,F,High,3,"Gangwathura enawa, awidhaganna amaarui,aachchi",old ppl trapped flood
+call79.ogg,7,sinhala,s,F,High,2,"Koheth yanna ba, gangwathura",stranded on road
+call80.ogg,5,singlish,s,F,Medium,2,"Gangwathura, car gahagena yanawa",car is being washed away
+call81.ogg,4,sinhala,s,F,High,3,"lamaya, gangwathura, udawkaranna, gahagena yanawa",child is drowning
+call82.ogg,3,sinhala,s,F,Medium,2,Bayai,scared doesn't know what to do
+call88.ogg,14,tamil,o,F,High,3,"Thee, manidharhal ullarhal, udhawi thevai, yaarum illai","some house is on fire ppl trapped, no one to help"
+call89.ogg,18,tamil,s,F,Medium,2,"minsaaram illai, tholaie pesi illai, udhawi thewai",
+call90.ogg,9,tamil,o,F,Low,3,"Unawum, udaiyum",affected ppl need clothes and food
+call91.ogg,2,singlish,s,F,Low,3,phone battery low,phone battery low
+call92.ogg,2,sinhala,o,F,High,2,Ginnak,fire incident at home
+call93.ogg,2,sinhala,s,F,High,3,"wathura, yata wela",house under water
+call94.ogg,4,sinhala,s,F,Medium,1,"ginnak, signal na",fire incident
+call95.ogg,4,singlish,o,F,Medium,2,"Flood, udhaw karanna",friend's area flooded
+call96.ogg,2,sinhala,s,F,Medium,2,"Lamai, bayawela",children scared
+call97.ogg,5,singlish,s,F,High,3,Gini gannawa,shop on fire
+call98.ogg,4,singlish,s,F,Medium,2,"Please help, udhawkaranna",only please help is told no info
+call99.ogg,3,sinhala,s,F,High,3,"Gini, husma ganna amaarui","fire, cant breathe due to smoke"
+call100.ogg,3,singlish,s,F,Medium,1,"signal na, gangwathura awith",flood no signal
+call108.ogg,11,sinhala,s,F,High,3,"Gangwathura, awidaganna ba,wathura wadi wenawa",trapped in flood
+call109.ogg,9,sinhala,s,F,High,3,"Wathura, yatawela, keepa denek innawa",many ppl trapped in flood
+call110.ogg,9,sinhala,s,F,High,3,"ginnak, hirawela, 3 denek, ikmanata",fire incident at home
+call112.ogg,7,sinhala,s,M,Medium,1,"Bayai, wathura",scared
+call113.ogg,9,sinhala,s,M,High,2,"Gangwathura, udawkaranna, 5 denek",5 ppl trapped in flood
+call114.ogg,6,sinhala,s,M,Medium,2,"wathura athula, current giya, bayai",powercut and flood
+call120.ogg,11,singlish,s,F,High,2,"smoke, fire, 3 denek","fire incident, 3 ppl trapped"
+call121.ogg,11,singlish,s,F,Medium,2,wathura athul wela,water inside the house ppl upstairs
+call122.ogg,9,singlish,o,F,High,2,"eliyat enna ba, flood",mother stuck inside house
+call123.ogg,10,singlish,o,F,High,3,"lamai,fire, flames wadiwenawa","apartment on fire, children stuck"
+call124.ogg,11,singlish,o,F,High,3,"fire, dennek athule, beraganna amarui","fire in warehouse, two ppl stuck"
+call125.ogg,3,tamil,s,F,High,3,,child caller
+call126.ogg,3,tamil,s,M,High,3,,child caller
+call127.ogg,3,tamil,s,M,High,3,"thayawu seydhu, meetkungal",child caller
+call128.ogg,3,tamil,s,M,High,3,meetpu thewai,child caller
+call129.ogg,3,tamil,s,M,High,3,,child caller
+call135.ogg,5,tanglish,o,F,Medium,2,"smoke warudhu, fire, theriyala",neighbours house fire
+call136.ogg,5,tanglish,s,F,Low,2,,Complaining about rain
+call137.ogg,5,tanglish,o,F,Low,3,"fire, safe",fire incident but people safe
+call138.ogg,6,tanglish,o,F,Low,3,"water enter, safe",water entered but ppl safe
+call139.ogg,5,tamil,s,F,High,2,"puhai, payandhu","smoke, scared"
+call140.ogg,11,tanglish,o,F,High,3,"Thee, parawuhiradhu, puhai",fire incident
+call141.ogg,9,tanglish,o,F,High,3,"Child, trapped ,water",car park flooded child trapped
