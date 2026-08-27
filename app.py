@@ -33,12 +33,14 @@ TARGET_SR = 16_000
 N_MFCC    = 40
 
 URGENCY_KEYWORDS = [
-    # ── English — confirmed from actual Whisper transcripts ───────────────────
+    # ── English — sourced from keywords_heard column in labels.csv (human-confirmed)
+    # plus TF-IDF validation on actual Whisper transcripts
     "help", "fire", "inside", "trapped", "quickly", "emergency",
     "blood", "dying", "dead", "accident", "attack", "hurt", "injured",
     "crash", "ambulance", "police", "gas", "smoke", "burning", "flood",
-    "workers", "grandmother", "children", "baby", "unconscious",
+    "workers", "grandmother", "children", "child", "baby", "unconscious",
     "breathing", "cannot breathe", "stuck", "still inside",
+    "water", "flames", "fast",
 
     # ── Sinhala — Whisper hallucinates on Sinhala audio (outputs Arabic/Cyrillic)
     # Only romanised fragments that actually appeared in transcripts are kept
@@ -62,6 +64,9 @@ URGENCY_KEYWORDS = [
     "சிறிக்கிறோம்",      # we are trapped — confirmed call23
     "தெரிய வில்லை",      # cannot see/don't know — distress marker call21
     "சரியாக",            # properly (as in "not working properly") — call21
+    "தண்ணீர்",           # water (thanneer) — confirmed keywords_heard
+    "குழந்தை",           # child — confirmed keywords_heard
+    "புகை",              # smoke (pugai) — confirmed keywords_heard
 ]
 
 NON_FEATURE_COLS = {"filename", "urgency_label", "language", "transcript"}

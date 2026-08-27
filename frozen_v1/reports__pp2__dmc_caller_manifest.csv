@@ -1,0 +1,60 @@
+recording_id,filename,caller_wav,caller_speakers,n_caller_speakers,caller_duration_s,call_duration_s,caller_pct,source_sr,status
+Call recording +251127_114430,Call recording +251127_114430.wav,audio/dmc_caller/Call recording +251127_114430_caller.wav,SPEAKER_01+SPEAKER_02,2,32.7,41.3,79.2,16000,OK
+Call recording +251128_074424,Call recording +251128_074424.wav,audio/dmc_caller/Call recording +251128_074424_caller.wav,SPEAKER_00+SPEAKER_02,2,45.3,89.9,50.4,16000,OK
+Call recording 0_251128_090910,Call recording 0_251128_090910.wav,audio/dmc_caller/Call recording 0_251128_090910_caller.wav,SPEAKER_01,1,27.4,68.1,40.2,16000,OK
+Call recording 0_251129_090737,Call recording 0_251129_090737.wav,audio/dmc_caller/Call recording 0_251129_090737_caller.wav,SPEAKER_01,1,34.6,43.5,79.7,16000,OK
+Call recording 2215053,Call recording 2215053.wav,audio/dmc_caller/Call recording 2215053_caller.wav,SPEAKER_01,1,75.7,126.4,59.9,16000,OK
+Call recording 251127_191819,Call recording 251127_191819.wav,audio/dmc_caller/Call recording 251127_191819_caller.wav,SPEAKER_00,1,70.5,189.8,37.1,16000,OK
+Call recording 251128_000340,Call recording 251128_000340.wav,audio/dmc_caller/Call recording 251128_000340_caller.wav,SPEAKER_01,1,38.6,126.6,30.5,16000,OK
+Call recording 251128_051228,Call recording 251128_051228.wav,audio/dmc_caller/Call recording 251128_051228_caller.wav,SPEAKER_01,1,22.6,55.2,40.9,16000,OK
+Call recording 251128_061456,Call recording 251128_061456.wav,audio/dmc_caller/Call recording 251128_061456_caller.wav,SPEAKER_03,1,19.4,53.8,36.1,16000,OK
+Call recording 251128_064500,Call recording 251128_064500.wav,audio/dmc_caller/Call recording 251128_064500_caller.wav,SPEAKER_01+SPEAKER_02+SPEAKER_03,3,27.9,65.3,42.7,16000,OK
+Call recording 251128_145834,Call recording 251128_145834.wav,audio/dmc_caller/Call recording 251128_145834_caller.wav,SPEAKER_01+SPEAKER_02+SPEAKER_03,3,36.2,60.1,60.2,16000,OK
+Call recording 251128_173111,Call recording 251128_173111.wav,audio/dmc_caller/Call recording 251128_173111_caller.wav,SPEAKER_01,1,58.5,161.6,36.2,16000,OK
+Call recording 251129_111451,Call recording 251129_111451.wav,audio/dmc_caller/Call recording 251129_111451_caller.wav,SPEAKER_01,1,30.7,98.1,31.3,16000,OK
+Call recording 251130_061344,Call recording 251130_061344.wav,audio/dmc_caller/Call recording 251130_061344_caller.wav,SPEAKER_02,1,25.6,50.5,50.7,16000,OK
+Call recording 251130_182300,Call recording 251130_182300.wav,audio/dmc_caller/Call recording 251130_182300_caller.wav,SPEAKER_01,1,40.0,131.3,30.5,16000,OK
+Call recording 251201_114612,Call recording 251201_114612.wav,audio/dmc_caller/Call recording 251201_114612_caller.wav,SPEAKER_01,1,55.1,108.1,51.0,16000,OK
+Call recording 251201_154056,Call recording 251201_154056.wav,audio/dmc_caller/Call recording 251201_154056_caller.wav,SPEAKER_01,1,40.1,75.9,52.9,16000,OK
+Call recording 7251127_124019,Call recording 7251127_124019.wav,audio/dmc_caller/Call recording 7251127_124019_caller.wav,SPEAKER_00+SPEAKER_01,2,12.3,27.3,45.0,16000,OK
+Call recording 7251128_075207,Call recording 7251128_075207.wav,audio/dmc_caller/Call recording 7251128_075207_caller.wav,SPEAKER_01,1,55.4,117.4,47.2,16000,OK
+Call recording 7251128_090539,Call recording 7251128_090539.wav,audio/dmc_caller/Call recording 7251128_090539_caller.wav,SPEAKER_00,1,15.4,56.8,27.2,16000,OK
+Call recording 7251128_162532,Call recording 7251128_162532.wav,audio/dmc_caller/Call recording 7251128_162532_caller.wav,SPEAKER_00,1,16.9,41.2,40.9,16000,OK
+Call recording 7251128_172437,Call recording 7251128_172437.wav,audio/dmc_caller/Call recording 7251128_172437_caller.wav,SPEAKER_01,1,23.3,78.4,29.7,16000,OK
+Call recording 7_251128_061849,Call recording 7_251128_061849.wav,audio/dmc_caller/Call recording 7_251128_061849_caller.wav,SPEAKER_01,1,59.6,111.0,53.7,16000,OK
+Call recording 7_251128_092626,Call recording 7_251128_092626.wav,audio/dmc_caller/Call recording 7_251128_092626_caller.wav,SPEAKER_00,1,25.2,54.9,45.8,16000,OK
+Call recording 7_251128_130139,Call recording 7_251128_130139.wav,audio/dmc_caller/Call recording 7_251128_130139_caller.wav,SPEAKER_00,1,25.2,36.1,70.0,16000,OK
+Call recording 7_251128_160819,Call recording 7_251128_160819.wav,audio/dmc_caller/Call recording 7_251128_160819_caller.wav,SPEAKER_01,1,64.6,160.0,40.4,16000,OK
+Call recording 7_251128_220436,Call recording 7_251128_220436.wav,audio/dmc_caller/Call recording 7_251128_220436_caller.wav,SPEAKER_01,1,21.3,83.8,25.4,16000,OK
+Call recording 7_251130_150333,Call recording 7_251130_150333.wav,audio/dmc_caller/Call recording 7_251130_150333_caller.wav,SPEAKER_00,1,19.6,52.3,37.5,16000,OK
+Call recording _251128_000158,Call recording _251128_000158.wav,audio/dmc_caller/Call recording _251128_000158_caller.wav,SPEAKER_00,1,45.2,97.0,46.6,16000,OK
+Call recording _251128_045727,Call recording _251128_045727.wav,audio/dmc_caller/Call recording _251128_045727_caller.wav,SPEAKER_01,1,98.3,246.5,39.9,16000,OK
+Call recording _251128_055921,Call recording _251128_055921.wav,audio/dmc_caller/Call recording _251128_055921_caller.wav,SPEAKER_01+SPEAKER_02,2,61.8,107.0,57.7,16000,OK
+Call recording _251128_080730,Call recording _251128_080730.wav,audio/dmc_caller/Call recording _251128_080730_caller.wav,SPEAKER_00,1,26.2,96.0,27.3,16000,OK
+Call recording _251128_092239,Call recording _251128_092239.wav,audio/dmc_caller/Call recording _251128_092239_caller.wav,SPEAKER_01+SPEAKER_02+SPEAKER_03,3,33.5,56.5,59.3,16000,OK
+Call recording _251128_104418,Call recording _251128_104418.wav,audio/dmc_caller/Call recording _251128_104418_caller.wav,SPEAKER_01,1,10.1,43.3,23.3,16000,OK
+Call recording _251128_154736,Call recording _251128_154736.wav,audio/dmc_caller/Call recording _251128_154736_caller.wav,SPEAKER_01,1,13.3,49.9,26.7,16000,OK
+Call recording _251128_174609,Call recording _251128_174609.wav,audio/dmc_caller/Call recording _251128_174609_caller.wav,SPEAKER_00,1,99.4,155.3,64.0,16000,OK
+Call recording _251128_215453,Call recording _251128_215453.wav,audio/dmc_caller/Call recording _251128_215453_caller.wav,SPEAKER_00,1,82.3,162.9,50.5,16000,OK
+Call recording _251128_225506,Call recording _251128_225506.wav,audio/dmc_caller/Call recording _251128_225506_caller.wav,SPEAKER_01,1,58.5,106.6,54.9,16000,OK
+Call recording _251128_232203,Call recording _251128_232203.wav,audio/dmc_caller/Call recording _251128_232203_caller.wav,SPEAKER_01+SPEAKER_02,2,15.7,83.9,18.7,16000,OK
+Call recording _251129_092106,Call recording _251129_092106.wav,audio/dmc_caller/Call recording _251129_092106_caller.wav,SPEAKER_00,1,30.3,75.6,40.0,16000,OK
+Call recording _251129_103931,Call recording _251129_103931.wav,audio/dmc_caller/Call recording _251129_103931_caller.wav,SPEAKER_01,1,33.2,92.6,35.9,16000,OK
+Call recording _251129_110959,Call recording _251129_110959.wav,audio/dmc_caller/Call recording _251129_110959_caller.wav,SPEAKER_00,1,19.6,71.1,27.6,16000,OK
+Call recording _251129_111237,Call recording _251129_111237.wav,audio/dmc_caller/Call recording _251129_111237_caller.wav,SPEAKER_00,1,25.4,80.5,31.6,16000,OK
+Call recording _251129_150256,Call recording _251129_150256.wav,audio/dmc_caller/Call recording _251129_150256_caller.wav,SPEAKER_01,1,46.5,112.5,41.3,16000,OK
+Call recording _251130_054850,Call recording _251130_054850.wav,audio/dmc_caller/Call recording _251130_054850_caller.wav,SPEAKER_00,1,41.9,77.3,54.2,16000,OK
+Call recording _251130_075849,Call recording _251130_075849.wav,audio/dmc_caller/Call recording _251130_075849_caller.wav,SPEAKER_01,1,103.5,229.4,45.1,16000,OK
+Call recording _251130_125506,Call recording _251130_125506.wav,audio/dmc_caller/Call recording _251130_125506_caller.wav,SPEAKER_00,1,45.1,87.2,51.7,16000,OK
+Call recording _251130_150637,Call recording _251130_150637.wav,audio/dmc_caller/Call recording _251130_150637_caller.wav,SPEAKER_00,1,10.5,17.9,59.0,16000,OK
+Call recording _251130_192058,Call recording _251130_192058.wav,audio/dmc_caller/Call recording _251130_192058_caller.wav,SPEAKER_01,1,21.8,69.5,31.4,16000,OK
+Call recording tamil,Call recording tamil.wav,audio/dmc_caller/Call recording tamil_caller.wav,SPEAKER_00+SPEAKER_01,2,26.8,28.0,95.7,16000,OK
+Call recording_251128_213632,Call recording_251128_213632.wav,audio/dmc_caller/Call recording_251128_213632_caller.wav,SPEAKER_01,1,30.3,86.4,35.1,16000,OK
+890001000492658,890001000492658.wav,audio/dmc_caller/890001000492658_caller.wav,SPEAKER_00,1,23.7,83.6,28.4,8000,OK
+890001000492659,890001000492659.wav,audio/dmc_caller/890001000492659_caller.wav,SPEAKER_01,1,24.4,62.6,38.9,8000,OK
+890001000492661,890001000492661.wav,audio/dmc_caller/890001000492661_caller.wav,SPEAKER_00+SPEAKER_01,2,34.3,91.1,37.6,8000,OK
+890001000492665,890001000492665.wav,audio/dmc_caller/890001000492665_caller.wav,SPEAKER_00,1,32.1,107.5,29.9,8000,OK
+890001000492675,890001000492675.wav,audio/dmc_caller/890001000492675_caller.wav,SPEAKER_00,1,34.9,104.0,33.6,8000,OK
+890001000492722,890001000492722.wav,audio/dmc_caller/890001000492722_caller.wav,SPEAKER_01,1,18.3,42.9,42.6,8000,OK
+890001000492735,890001000492735.wav,audio/dmc_caller/890001000492735_caller.wav,SPEAKER_00,1,33.4,85.4,39.1,8000,OK
+890001000492744,890001000492744.wav,audio/dmc_caller/890001000492744_caller.wav,SPEAKER_01,1,43.9,106.8,41.1,8000,OK

@@ -1,0 +1,60 @@
+recording_id,filename,dmc_priority_label,disaster_type,language,district,scripted_or_spontaneous,recording_condition,label_confidence,notes
+890001000492658,890001000492658.wav,Low,,Sinhala,,spontaneous,Good,3,Asking information
+890001000492659,890001000492659.wav,Low,,Sinhala,,spontaneous,Good,3,Complaining
+890001000492661,890001000492661.wav,Low,,Sinhala,,spontaneous,Good,3,Asking information
+890001000492665,890001000492665.wav,Low,,Sinhala,,spontaneous,Good,3,Asking information
+890001000492675,890001000492675.wav,Low,,Sinhala,,spontaneous,Good,3,Asking information
+890001000492722,890001000492722.wav,Low,,Sinhala,,spontaneous,Good,3,Asking information
+890001000492735,890001000492735.wav,Low,,Sinhala,,spontaneous,Good,3,Informing about a disaster that's over and asking what to do post disaster
+890001000492744,890001000492744.wav,High,Landslide,Sinhala,Badulla,spontaneous,Good,3,Possible big landslide
+Call recording +251127_114430,Call recording +251127_114430.wav,Low,,Sinhala,,,Good,3,asking if theres a tsunami threat
+Call recording +251128_074424,Call recording +251128_074424.wav,Medium,,Sinhala,Kandy,spontaneous,Good,3,
+Call recording 0_251128_090910,Call recording 0_251128_090910.wav,Low,,Sinhala,Puttalam,spontaneous,Good,3,asking for roads
+Call recording 0_251129_090737,Call recording 0_251129_090737.wav,Medium,,Sinhala,Puttalam,spontaneous,Good,3,Asking for food
+Call recording 2215053,Call recording 2215053.wav,High,Landslide,Sinhala,Matale,spontaneous,Good,3,"landslide , people are stuck"
+Call recording 251127_191819,Call recording 251127_191819.wav,High,Landslide,Sinhala,Badulla,spontaneous,Good,3,
+Call recording 251128_000340,Call recording 251128_000340.wav,Medium,Landslide,Sinhala,Kandy,spontaneous,Good,3,"geyak yatawela , road is covered"
+Call recording 251128_051228,Call recording 251128_051228.wav,High,Flood,Sinhala,Kandy,spontaneous,Good,3,people stuck
+Call recording 251128_061456,Call recording 251128_061456.wav,High,Flood,Sinhala,Kandy,spontaneous,Good,3,families trapped
+Call recording 251128_064500,Call recording 251128_064500.wav,Medium,Tree fallen,Sinhala,Gampaha,spontaneous,Fair,3,
+Call recording 251128_145834,Call recording 251128_145834.wav,Medium,Tree fallen,Sinhala,Colombo,spontaneous,Good,3,tree about to fall
+Call recording 251128_173111,Call recording 251128_173111.wav,High,Landslide,Sinhala,Kandy,spontaneous,Poor,2,
+Call recording 251129_111451,Call recording 251129_111451.wav,High,,Sinhala,Gampaha,spontaneous,Good,3,rescue asking
+Call recording 251130_061344,Call recording 251130_061344.wav,Low,,Sinhala,,spontaneous,Good,3,asking for information
+Call recording 251130_182300,Call recording 251130_182300.wav,Medium,,Sinhala,,spontaneous,Good,2,help
+Call recording 251201_114612,Call recording 251201_114612.wav,Low,,Sinhala,Puttalam,spontaneous,Good,3,Asking information
+Call recording 251201_154056,Call recording 251201_154056.wav,High,,Sinhala,,spontaneous,Good,3,2 ppl trapped
+Call recording 7251127_124019,Call recording 7251127_124019.wav,Low,,Sinhala,,spontaneous,Good,3,Asking information
+Call recording 7251128_075207,Call recording 7251128_075207.wav,High,Flood,Sinhala,Kandy,spontaneous,Good,3,people trapped
+Call recording 7251128_090539,Call recording 7251128_090539.wav,Medium,Tree fallen,Sinhala,,spontaneous,Good,3,tree about to fall
+Call recording 7251128_162532,Call recording 7251128_162532.wav,Low,Flood,Sinhala,Kandy,spontaneous,Good,3,Asking info
+Call recording 7251128_172437,Call recording 7251128_172437.wav,High,Flood,Sinhala,kegalle,spontaneous,Good,3,water till third floor
+Call recording 7_251128_061849,Call recording 7_251128_061849.wav,Medium,Tree fallen,Sinhala,Matale,spontaneous,Good,3,tree fallen
+Call recording 7_251128_092626,Call recording 7_251128_092626.wav,High,Tree fallen,Sinhala,Gampaha,spontaneous,Good,3,electricity leakage
+Call recording 7_251128_130139,Call recording 7_251128_130139.wav,Low,Flood,Sinhala,Kandy,spontaneous,Good,3,asking info
+Call recording 7_251128_160819,Call recording 7_251128_160819.wav,Medium,Tree fallen,Sinhala,,spontaneous,Poor,2,tree fallen
+Call recording 7_251128_220436,Call recording 7_251128_220436.wav,Low,,Sinhala,,spontaneous,Good,3,Information sharing
+Call recording 7_251130_150333,Call recording 7_251130_150333.wav,Low,,Sinhala,Panadura,spontaneous,Good,3,Asking information
+Call recording _251128_000158,Call recording _251128_000158.wav,High,Flood,Sinhala,,spontaneous,Fair,3,Flood water increased
+Call recording _251128_045727,Call recording _251128_045727.wav,High,Flood,Sinhala,Kandy,spontaneous,Fair,3,Flood water has increased
+Call recording _251128_055921,Call recording _251128_055921.wav,High,Current,Sinhala,Gampaha,spontaneous,Poor,3,tree has fallen and electricity leakage and fire
+Call recording _251128_080730,Call recording _251128_080730.wav,High,Flood,Sinhala,Kandy,spontaneous,Good,3,Child trapped at hostel
+Call recording _251128_092239,Call recording _251128_092239.wav,Medium,Rain,Sinhala,Colombo,spontaneous,Good,2,fertilizers are getting wet cause roof fell off due to wind
+Call recording _251128_104418,Call recording _251128_104418.wav,Low,Flood,Sinhala,Badulla,spontaneous,Good,3,Asking info about situation because cant contact people there
+Call recording _251128_154736,Call recording _251128_154736.wav,Medium,Flood,Sinhala,Colombo,spontaneous,Good,2,
+Call recording _251128_174609,Call recording _251128_174609.wav,High,Flood,Sinhala,Kandy,spontaneous,Good,3,people stuck
+Call recording _251128_215453,Call recording _251128_215453.wav,High,Flood,Sinhala,Kurunegala,spontaneous,Good,3,some students are stuck
+Call recording _251128_225506,Call recording _251128_225506.wav,High,Flood,Sinhala,Puttalam,spontaneous,Good,3,"child, old people and mom trapped"
+Call recording _251128_232203,Call recording _251128_232203.wav,Low,Flood,Sinhala,,spontaneous,Good,3,asking info about water level
+Call recording _251129_092106,Call recording _251129_092106.wav,High,Flood,Sinhala,Gampaha,spontaneous,Good,3,students trapped
+Call recording _251129_103931,Call recording _251129_103931.wav,Medium,Landslide,Sinhala,,spontaneous,Good,2,
+Call recording _251129_110959,Call recording _251129_110959.wav,Medium,Flood,Sinhala,Kandy,spontaneous,Good,2,want to check on students not answering calls
+Call recording _251129_111237,Call recording _251129_111237.wav,High,Flood,Sinhala,Puttalam,spontaneous,Good,3,People need immediate rescue
+Call recording _251129_150256,Call recording _251129_150256.wav,High,Flood,Sinhala,Puttalam,spontaneous,Good,3,
+Call recording _251130_054850,Call recording _251130_054850.wav,Medium,Flood,Sinhala,Puttalam,spontaneous,Good,3,water in a orphanage
+Call recording _251130_075849,Call recording _251130_075849.wav,Low,,Sinhala,,spontaneous,Good,2,Asking information
+Call recording _251130_125506,Call recording _251130_125506.wav,High,Flood,Sinhala,Colombo,spontaneous,Good,3,people stuck
+Call recording _251130_150637,Call recording _251130_150637.wav,Low,Flood,Sinhala,Colombo,spontaneous,Good,3,giving info
+Call recording _251130_192058,Call recording _251130_192058.wav,Low,Flood,Sinhala,Colombo,spontaneous,Good,3,asking about a rescue operation
+Call recording_251128_213632,Call recording_251128_213632.wav,Low,Flood,Sinhala,Colombo,spontaneous,Good,3,asking bout ppl that they cant contact
+Call recording tamil,Call recording tamil.wav,High,Flood,Tamil,,spontaneous,Good,3,

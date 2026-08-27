@@ -1,0 +1,69 @@
+======================================================================
+CANDIDATE PIPELINE FREEZE MANIFEST
+Frozen: 2026-08-18T18:27:24
+STATUS: DEVELOPMENT CANDIDATE — external DMC evaluation required
+======================================================================
+
+METHODOLOGICAL CAVEAT
+fire_smoke_match was selected after inspecting development errors on the same simulated corpus used for cross-validation. The macro-F1 of 0.621 is a development estimate and may be optimistic. External evaluation on independent DMC recordings is required before any final performance claim.
+
+DATA
+  Labels (frozen): data/labels_frozen_20260817.csv
+  Labels SHA-256 : c7aa965d469ad5ab8935094bd8511daa6eef6b1d379e16c83c69f4aa084ddb4a
+  Features       : data/features.csv
+  Features SHA   : 087a6bda1b5041b2a063e8fc1008d669577a0c819c1d9ab3cbdd0c181ad007e7
+  Calls          : 267
+  Classes        : {'High': 130, 'Medium': 82, 'Low': 55}
+
+ASR
+  Sinhala : Lingalingeswaran/whisper-small-sinhala_v3
+  Other   : openai/whisper-base
+  Routing : oracle-language label used to route each call
+
+FINAL FEATURE SET (111 features)
+  Acoustic (91): mfcc_1-40_mean/std + 11 prosodic/energy/spectral
+  Text (5): ['asr_quality', 'keyword_count', 'word_count', 'repetition_rate', 'sentiment_polarity']
+  Context retained (14): ['sin_context_score', 'sin_danger_count', 'sin_help_request_count', 'sin_high_risk_phrase_count', 'sin_location_context_count', 'sin_person_at_risk_count', 'sin_safety_state_count', 'tam_context_score', 'tam_danger_count', 'tam_help_request_count', 'tam_high_risk_phrase_count', 'tam_location_context_count', 'tam_person_at_risk_count', 'tam_safety_state_count']
+  Context REMOVED : ['sin_immediacy_count', 'tam_immediacy_count']
+  Added           : fire_smoke_match (binary)
+
+FIRE/SMOKE KEYWORDS
+  fire
+  smoke
+  burning
+  flames
+  gas
+  ගිනිගන්නව
+  ගිනිඅරගෙන
+  ගින්නක්
+  ගිනි
+  දුමක්
+  දුම
+  தீ
+  புகை
+  gini
+
+ML PIPELINE
+  StratifiedKFold  n_splits=5  shuffle=True  random_state=42
+  StandardScaler — fit on train split only
+  SMOTE(random_state=42) — fit on train split only, after scaler, inside ImbPipeline
+  RF params: {'n_estimators': 200, 'min_samples_leaf': 2, 'class_weight': 'balanced', 'random_state': 42, 'n_jobs': -1}
+
+DEVELOPMENT RESULTS
+  A_acoustic_91                  macro_f1=0.5919  High=0.7615  Med=0.4390  Low=0.6000
+  B_old_keyword_96               macro_f1=0.6081  High=0.7538  Med=0.4390  Low=0.6545
+  C_base_96                      macro_f1=0.5934  High=0.7615  Med=0.4390  Low=0.6000
+  D_context_112                  macro_f1=0.6039  High=0.7462  Med=0.4390  Low=0.6545
+  E_context_gate_112             macro_f1=0.6047  High=0.7385  Med=0.4512  Low=0.6545
+  D_no_immediacy_110             macro_f1=0.6091  High=0.7538  Med=0.4634  Low=0.6364
+  D_candidate_111                macro_f1=0.6208  High=0.7923  Med=0.4634  Low=0.6364
+
+COMPARATOR NOTE
+Medium recall comparisons in the paper must state the comparator explicitly. D_candidate vs D_full: Medium recall 0.463 vs 0.439 (+0.024). D_candidate vs D_no_imm: Medium recall 0.463 vs 0.463 (no change — the fire_smoke feature did NOT improve Medium recall). The Medium recall improvement is attributable to immediacy removal, not fire_smoke.
+
+NEXT STEPS
+  1. Evaluate frozen candidate pipeline on DMC recordings WITHOUT any tuning
+  2. Report simulated and DMC results in separate tables
+  3. Record whether DMC recordings contain enough genuine Medium cases for three-class evaluation
+  4. Do NOT add more features, keywords, or classifier changes before DMC evaluation
+  5. Begin writing Methods and Results sections using frozen development results

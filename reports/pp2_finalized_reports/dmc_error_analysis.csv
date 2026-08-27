@@ -1,0 +1,60 @@
+recording_id,true_label,predicted_label,category,detail,keyword_count,asr_quality,word_count,repetition_rate,transcript
+890001000492658,Low,Low,CORRECT,,0.0,1.0,21.0,0.1052631578947368,ලවනා ක්‍රණු අධ්‍යස්ථානයි. අධ්‍යවන් හක්තේ අධ්‍යවන් යන්න දැබුත්තේක අවපාරේ කෘපිද්ව 
+890001000492659,Low,High,MODEL_OVERRIDE,"text signal present, acoustics also closer to true class (z=0.77 vs 0.94 for predicted) - model still got it wrong",0.0,1.0,21.0,0.0,අනේ සැර මම් එකක්ත් කරන බුද්තලම සාලිවහන්දී රාජන්ගනේ දොරවල්ලරීන්න කලාය වත්‍ර නිහිල
+890001000492661,Low,Medium,ASR_FAILURE,no keywords or context features fired,0.0,1.0,39.0,0.1142857142857142,අය්බවන් අබම් කොලෙන් වන්වාද්පුරේයට යන්න කිරවකු උත්තරස් කිරවදු ඒ හැරිය නැතියි රකුන
+890001000492665,Low,Medium,ASR_FAILURE,no keywords or context features fired,0.0,1.0,29.0,0.0357142857142857,මහස් මෙහිම් මෙමට දහගැන්පු අඬු සංමියි යියි අඬ්‍රදිපුරි පැතර ද්මාතුර තියෙනාදි යොල්
+890001000492675,Low,Medium,ASR_FAILURE,no keywords or context features fired,0.0,1.0,34.0,0.064516129032258,අයිගාමාන් විකිවල කවිත ජහන්සුරු ආවනු යාභායන් හාවමේ ක්‍රයන්වාවතේ වාරිය පැත්ත්වෙන් 
+890001000492722,Low,Low,CORRECT,,0.0,1.0,14.0,0.0769230769230769,අයිබවන් ආපදාකලම නැක්න පත්වත්තන් පත්වය කැනවේ ජන පත්වෙකුත් කියිල්ල පත්වාමාබින් ගත්
+890001000492735,Low,Low,CORRECT,,0.0,1.0,105.0,0.1025641025641025,අයබොම් අත්‍යා නේ මොඳැලිසිකෙන් අර කුමුක්කම හිය පාලමේදී මේ වතුරු දැම්මනේ මකේ සේවිස
+890001000492744,High,High,CORRECT,,0.0,1.0,41.0,0.1212121212121212,අයුගොන් මතමේ මේ කතා කරන්නේ ඇල්ල උව කර්නවොල්ල කර්නගොල්ල එකර් හයක් විතරැ කෑල්ලක් ප
+Call recording +251127_114430,Low,High,MODEL_OVERRIDE,"text signal present, acoustics also closer to true class (z=0.64 vs 0.85 for predicted) - model still got it wrong",0.0,1.0,35.0,0.1034482758620689,මස් මමස් කරන්නේ අළුග්ගවමික් අළුග්ගමාර්නේ මොනා හරි මේ සුනාමි හරි සුළු සුළන් හරි අ
+Call recording +251128_074424,Medium,Medium,CORRECT,,0.0,1.0,18.0,0.125,ගින්දුවයි අතයි එකයි.ඔයි අතයි එකයි.ඔයි.උසිතුණයි.උසිතුණයි.පහයි..යි.යි.යි.යි.යි.යි.
+Call recording 0_251128_090910,Low,Medium,ASR_FAILURE,no keywords or context features fired,0.0,1.0,33.0,0.238095238095238,මං වින්නේ පිත්වලම පිත්වෙන්ගමයි මත දෙක් වෙන්න පාර පුමත් ගන්නැයි බේමොම් පිත්වලම පේ
+Call recording 0_251129_090737,Medium,High,ASR_FAILURE,no keywords or context features fired,0.0,1.0,51.0,0.0408163265306122,එළ මිශ්‍ර දසුන් මම යෝසින් කත අයරන්නේ එම ජොප්‍ර මෙද මිස්ල ද්‍ර දාසවන් මෙය මම මෙයක
+Call recording 2215053,High,High,CORRECT,,0.0,1.0,90.0,0.0684931506849315,අයුම් යාපුට අයිකෙන්මේ මාත්‍යා මාත්‍යා මේ මොමක අයිකාවලින් කථාකරන්නේ යිට් යෙට් යිට
+Call recording 251127_191819,High,Low,ASR_FAILURE,no keywords or context features fired,0.0,1.0,64.0,0.0434782608695652,ආංගුහන්සේ ඔයිබාන්සේ මංගටාගරන්න මගෙමේ පවුලකට්‍යයක් හිරවෙලයින්ම බදුල්ලිමේ බුලප්ත්ව
+Call recording 251128_000340,Medium,Low,MODEL_OVERRIDE,"text signal present, acoustics also closer to true class (z=1.11 vs 1.24 for predicted) - model still got it wrong",1.0,1.0,27.0,0.0384615384615384,අපිට පොඩි අපුදාවකල දින්නෙ?දෝගම්බල බෙදිස ලො ඇල්ලකනාව ග්‍යයක් කිට යටිවෙල දීනෙ?නුවර
+Call recording 251128_051228,High,Medium,UNCLEAR,"z_true=0.94 z_pred=0.82, no dominant signal",2.0,1.0,31.0,0.1153846153846153,අපදායක ද අනේ අපි මේ කදාගරන්න මේ ගෙළුවේ දැනෙ නුවර්යයක් දැන් අඳී හළක් පිර වසුරු යට
+Call recording 251128_061456,High,High,CORRECT,,0.0,1.0,17.0,0.0,අයිබා මර්නේ හතකවන් කුරු නෑගල් යකල්ල බෝගුමුවා කින් තැදින් හතාකරන්නේ එනිතන දැදුරුව
+Call recording 251128_064500,Medium,Low,ASR_FAILURE,repetitive/degenerate (repetition_rate=0.35),1.0,1.0,25.0,0.3529411764705882,මිස් ගම්පා මේ දෙන්ස් බළණ්ඩ මෙලාවය අරටින පස් මිස් ගම්පා මෙය දැන් පොතන මෙය ප්රොෂකය
+Call recording 251128_145834,Medium,Medium,CORRECT,,0.0,1.0,39.0,0.027027027027027,ආපදා කළමුණා කරනීනේ මේ කුළොන් හව මීතට පුල්ලපාරෙන් කථා කරන්නේ ලයිත් කනුපැත්තටල් පු
+Call recording 251128_173111,High,Medium,ASR_FAILURE,no keywords or context features fired,0.0,1.0,63.0,0.0508474576271186,ලෝක් කරම් ස්බේ එයාන්න හිරවලායින් මොඩු රමීබේ අධ්‍රාරිකර්ම් කෙළැ කිව්වේයේ කවුත් කව
+Call recording 251129_111451,High,Medium,ASR_FAILURE,no keywords or context features fired,0.0,1.0,30.0,0.0384615384615384,එලොත් එලොත් එලොත් එලොත් එලොත් කතාකරේ මගේ ආලුවා උදේනම් මට නැකේච් කරල්ලකින්න යාගේ 
+Call recording 251130_061344,Low,High,MODEL_OVERRIDE,"text signal present, acoustics also closer to true class (z=0.96 vs 1.04 for predicted) - model still got it wrong",0.0,1.0,36.0,0.0,අයිකු අමා කියා මම පැයිතුම් එකිනි කතා කරන්න යනවාඩුයි දන් මටා අද සේවයට අනිවාඩි වහක
+Call recording 251130_182300,Medium,Medium,CORRECT,,0.0,1.0,52.0,0.0869565217391304,මීලබැම්මට මින්ස්කල මේ ස්රවුමතුරණන් ජැන්ද එහැලැදිනාන ක්‍රන්න කොන්න වතුරවාතු කන්න 
+Call recording 251201_114612,Low,Low,CORRECT,,0.0,1.0,54.0,0.0816326530612244,එලොව් මම කතාර්තේ වූ මතියත් රැට එකුලන්නෙක් කතීති මතුරන් පුත්තලවි. මොතුරන් පැත්වීම
+Call recording 251201_154056,High,High,CORRECT,,0.0,1.0,50.0,0.0652173913043478,අය්බෝන්ස් මිස් නොම්බල හැත්තක්හත මෙයින් නළදරංකට්ටුරේ දෙන්නෙක් සිකුරුවාද ඉඳලා කිරව
+Call recording 7251127_124019,Low,Low,CORRECT,,0.0,1.0,13.0,0.0,අයිබෝන් අපට යලගෙන් මස්වීතික තාව ස්මාජ්‍ර කල මේ පැලපැමන් නෑකිල තහවුරුකයින් හාවු! 
+Call recording 7251128_075207,High,High,CORRECT,,1.0,1.0,69.0,0.0983606557377049,අමෙහිමයි ගෙලියුට අවුන්නෙකෙ කුමුර ගෙලියුට අවුන්නෙකෙ අපි කෝයක ඉස්සරහ එසන්කිකඩේ හතර
+Call recording 7251128_090539,Medium,High,MODEL_OVERRIDE,"text signal present, acoustics also closer to true class (z=0.23 vs 0.36 for predicted) - model still got it wrong",0.0,1.0,22.0,0.0476190476190476,"අලෝසය ග්‍ර්මෝනී, වි ගෝන් කදිනින්ක කකරන්නේ? ගෝන කදිනින් වි ස්වර් හොලකට දෑනවි, ගෙද"
+Call recording 7251128_162532,Low,Low,CORRECT,,0.0,1.0,7.0,0.0,අපි දාකර්කනා සොම මදේස්සනේදු මේ රන්නෙවිකල රන්ටැන්ඩ්‍රැන්ට්‍රැන්ට්‍රැන්ට්‍රැන්ට්‍ර
+Call recording 7251128_172437,High,Medium,ASR_FAILURE,no keywords or context features fired,0.0,1.0,15.0,0.0,කරවෙන්ලා හාපදාසේ ඉදෙත් හාමාස් ක්‍රයා මේ ක්‍රවෙන්ල තවුන්නගෙන් ගෙගැලගෙන දුපින්ද්‍ර
+Call recording 7_251128_061849,Medium,Low,UNCLEAR,"z_true=1.48 z_pred=1.27, no dominant signal",0.0,1.0,54.0,0.0384615384615384,ඔකියන්න වත්තේගෙම මාධලේ පාරෙ බෙන්විල සොයල්ලකදාව ඊය රෑයයක් පොමති නමේතිකුර දෙපොලවි 
+Call recording 7_251128_092626,High,Low,ASR_FAILURE,no keywords or context features fired,0.0,1.0,14.0,0.0,මීගමී දඩුපත හිරකඳවුර්පාරේ හරිය ගාජීනෙකි මෙර හරඥවායකකට අබදහත් වැටිලා ඄රඥවායක කැරි
+Call recording 7_251128_130139,Low,Medium,ASR_FAILURE,no keywords or context features fired,0.0,1.0,21.0,0.0,මෙක්ට මේ පේරදෙනිය බොතුරුගල් ගාර්ණකට වතුරුදාලන් එදැසියෙනුහි මෙයක් රත්න කටියක් මරි
+Call recording 7_251128_160819,Medium,High,ACOUSTIC_MISMATCH,acoustics closer to High training dist (z=2.02) than Medium (z=2.52),0.0,1.0,45.0,0.0465116279069767,මෙක්මේ එක් මංගැගල්ලෙන් ප්නාකරන්නේ අපේ ගැවුරට සහක්වතිලා ප්‍රහක්දන්ගේ ලැනිදලා කිකග
+Call recording 7_251128_220436,Low,High,ASR_FAILURE,no keywords or context features fired,0.0,1.0,25.0,0.0,එලෝවස් ප්‍රදා පොලිස්සයට මීට්‍ර පහන්සියකදර කිත්වයෙන් අපි ඉන්දි. හානම්ද්‍ය අරිසිය.
+Call recording 7_251130_150333,Low,Low,CORRECT,,1.0,1.0,27.0,0.0384615384615384,එම්සී මොක්‍රීමේ සරිකමුල්ල හරිය බොල්ගොට ජගයින මෙත් හමයින් දෙස් පිට දැන්ච්වකාව අර 
+Call recording _251128_000158,High,High,CORRECT,,1.0,1.0,54.0,0.06,එලෝ මමේ කතා කරන්නෙනුවරෙයි මට මේ අපි අත්කිලා ඉන්නෙ හිදගල එයාලට මේ දැං පිර්ඩිනික ය
+Call recording _251128_045727,High,Medium,UNCLEAR,"z_true=1.41 z_pred=1.35, no dominant signal",1.0,1.0,471.0,0.2539682539682539,එලෝ එලෝ එලෝ එලෝ එලෝ එලෝ එලෝ එලෝ එලෝ එලෝ එලෝ එල� එල� එල� එල� එල� එල� එල� එල� එල� 
+Call recording _251128_055921,High,Medium,ASR_FAILURE,no keywords or context features fired,0.0,1.0,85.0,0.1904761904761904,මාභුලින් කටාන් වල්නේ මෙන්ද?මාභුලි මාභුලින් කටාරකුත් හරේ?මේ බොත්හිතායේ වැයාර්යකුස
+Call recording _251128_080730,High,Medium,UNCLEAR,"z_true=0.79 z_pred=0.72, no dominant signal",2.0,1.0,25.0,0.0,අනේ කුරුණයගෙලින් කටා කරන්නේ නුවර ඉන්වදුව කැම්පස්සෙකේ කර මැදබෝවලන් උසාවිය බිටි පස
+Call recording _251128_092239,Medium,High,UNCLEAR,"z_true=1.67 z_pred=1.46, no dominant signal",0.0,1.0,37.0,0.15625,අපි ක්‍රගන්නේ කරන්නේ කරන්නේ අපි ක්‍රගන්නේ රජයේ පෝර සමාගයි. මේ අවත්තල වුරුත්ස්කය 
+Call recording _251128_104418,Low,Low,CORRECT,,0.0,1.0,17.0,0.0,අයියේ මට යාලුයුත්වක මේ අම් බැරදුන් අපේ ආත්තයින මයියංගෙනේ මයියංගෙන ටවුන්නෙ වෙය අට
+Call recording _251128_154736,Medium,Low,ASR_FAILURE,no keywords or context features fired,0.0,1.0,19.0,0.0555555555555555,අංගේ අම්මයේ විතරය ගෙදරින්නේ කළොතුමා අරවා සැන්ටලක පිචින්න පිටු පසි. හරිතකට. හරෙතා
+Call recording _251128_174609,High,Low,UNCLEAR,"z_true=0.93 z_pred=0.63, no dominant signal",0.0,1.0,116.0,0.0666666666666666,මම නිළිශාට් කතා කරනි කිළිස් ප්‍රධානකාරයාලේ බඳවාගේ කතාන්නි? අපේ මම අද උදේ ප්‍රිණ්
+Call recording _251128_215453,High,High,CORRECT,,1.0,1.0,98.0,0.0319148936170212,අයිපන්සේ ත්‍රවමේ අපි තාධීර්සාස පන්නලා සොය ලමල් ගාසේදිනෙක් ඉන්නාර ඔප්සල්ලෙකි ඉරගෙ
+Call recording _251128_225506,High,Medium,UNCLEAR,"z_true=0.94 z_pred=0.83, no dominant signal",1.0,1.0,44.0,0.0,අය්ධද්ගවල් අන්ද්‍රාද්වරෙන් කථාතරැන් මින් බංග දෙනිහි. හාන්දියෙන්. ඉස්තරහට් සෙද්දර
+Call recording _251128_232203,Low,High,MODEL_OVERRIDE,"text signal present, acoustics also closer to true class (z=0.91 vs 0.98 for predicted) - model still got it wrong",0.0,1.0,23.0,0.0,අයිපානු හාත්‍යයා මේ ක්‍රම්ගගේ තත්වයේ වැඩිවෙනවල් මමන් දන්නෙන් හගලා හරි ගොහොන්නේ ල
+Call recording _251129_092106,High,Low,ASR_FAILURE,no keywords or context features fired,0.0,1.0,38.0,0.0714285714285714,මි මට ගම්පාහි ගම්පාවට කිරි කෘකන්ටක් දෙන් විදෙනෙත්ම ගම්ව අපේ ඉක්මර්ථ් ඇමද්‍රැක්ට්
+Call recording _251129_103931,Medium,Low,ASR_FAILURE,no keywords or context features fired,0.0,1.0,13.0,0.0,එලෝ මයි ක්වියනුවන් කාගල් කවගන්නේ ප්‍රරෙක්ලාව ඕනීපා පාත්‍රයක්‍යත්‍යත්‍යත්‍යත්‍යත්
+Call recording _251129_110959,Medium,Low,ASR_FAILURE,no keywords or context features fired,0.0,1.0,27.0,0.0384615384615384,එළවයි බවන් හළො කළොමේ කළම පේරණි කැම්පසින් මේ ආල මේ පහළ ඊරිගම් පැත්වේ ක්තන් බෝධීම 
+Call recording _251129_111237,High,Medium,MODEL_OVERRIDE,"text signal present, acoustics also closer to true class (z=0.85 vs 0.89 for predicted) - model still got it wrong",0.0,1.0,24.0,0.0434782608695652,අයියල් ආයින් වෙලා එගොල්ලෝ වෙලා කරක්ට කිනිල්ලකියේ ඉතැරිලෝ ඇවිල්ල සැරීම නැහැ බාලන්
+Call recording _251129_150256,High,Medium,MODEL_OVERRIDE,"text signal present, acoustics also closer to true class (z=0.67 vs 0.80 for predicted) - model still got it wrong",0.0,1.0,43.0,0.2307692307692307,අයිකන එයාලා ඉන්න දෙරින් තත්වේලු ඉන්න තත්වේද්ධන් බතුරු දාගන් එයන් දෙයලා ඉන්න දාගන
+Call recording _251130_054850,Medium,Low,ASR_FAILURE,no keywords or context features fired,0.0,1.0,62.0,0.0571428571428571,අය අයික්තුතුතුතුමයි?ච්‍රයික්තුලාද්‍මඟමේද්ත් ප්‍රශ්නන්නි පාතකිනෙක්උමෝදර අදේ ළමානි
+Call recording _251130_075849,Low,High,MODEL_OVERRIDE,"text signal present, acoustics also closer to true class (z=0.87 vs 1.04 for predicted) - model still got it wrong",1.0,1.0,108.0,0.1111111111111111,මත්තියමන් ඉන්නේ ආන්මුඩුවේ මට අනුමුඩුවේ නම් කොළුමකටයි යන්නෝනේ මම යන්නේ මගේ මයික් 
+Call recording _251130_125506,High,Medium,UNCLEAR,"z_true=1.02 z_pred=1.00, no dominant signal",0.0,1.0,53.0,0.1395348837209302,අග්‍රව්ගත්තොන්කැරැනී හරිය වගැනී පන්සළට අල්ලපු ගිදර් අල්ලපු ග්‍රල්පාරේ කළිනිය හතය
+Call recording _251130_150637,Low,High,ASR_FAILURE,no keywords or context features fired,0.0,1.0,52.0,0.1666666666666666,අයෙත්මේ ආපදා කළරමණකයට මදෙසානි කථා කරන්කේ පාණදුර ඒ ඉරියායයිකට නම් දැනට කිසිමු වලප
+Call recording _251130_192058,Low,Medium,MODEL_OVERRIDE,"text signal present, acoustics also closer to true class (z=0.80 vs 0.90 for predicted) - model still got it wrong",1.0,1.0,20.0,0.0555555555555555,මටුට දැනගන්ල කුළුවන්ද අර මේ මේ හළාවත දැතුරුවයේගාව මේ පොඩි ප්‍රශ්නයකුමන් බත්තේක් 
+Call recording_251128_213632,Low,Low,CORRECT,,0.0,1.0,26.0,0.0,අමේ පේරාධිනිය විශ්විද්‍යාලේ හොත්ගල් වල හිටිපු ගෑන්ලලපයික් තත්වේ ගොමස් කළගන්න කුර
+Call recording tamil,High,High,CORRECT,,0.0,0.0,0.0,0.0,nan

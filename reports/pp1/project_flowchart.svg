@@ -1,0 +1,193 @@
+<svg viewBox="0 0 900 1400" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+<title>Emergency Call Urgency Classification — Full Project Flowchart</title>
+
+<defs>
+  <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <polygon points="0 0, 8 3, 0 6" fill="#555"/>
+  </marker>
+</defs>
+
+<rect width="900" height="1400" fill="#F8F9FA"/>
+
+<!-- Title -->
+<rect x="50" y="16" width="800" height="44" rx="6" fill="#1B3A6B"/>
+<text x="450" y="44" text-anchor="middle" fill="white" font-size="15" font-weight="bold">Emergency Call Urgency Classification — Complete System Flow</text>
+
+<!-- PP1 LABEL -->
+<rect x="50" y="72" width="800" height="22" rx="4" fill="#E3F0FB"/>
+<text x="450" y="88" text-anchor="middle" fill="#1B6CA8" font-size="12" font-weight="bold">PP1 — COMPLETED</text>
+
+<!-- ROW 1: DATA SOURCE -->
+<rect x="50" y="106" width="240" height="64" rx="6" fill="#DCEEFB" stroke="#1B6CA8" stroke-width="1.5"/>
+<text x="170" y="128" text-anchor="middle" fill="#1B3A6B" font-size="12" font-weight="bold">Raw Audio Files</text>
+<text x="170" y="145" text-anchor="middle" fill="#333" font-size="10">~1000 .ogg calls in audio/</text>
+<text x="170" y="158" text-anchor="middle" fill="#333" font-size="10">Sinhala · Tamil · English · Mixed</text>
+
+<rect x="330" y="106" width="240" height="64" rx="6" fill="#DCEEFB" stroke="#1B6CA8" stroke-width="1.5"/>
+<text x="450" y="128" text-anchor="middle" fill="#1B3A6B" font-size="12" font-weight="bold">Manual Labelling</text>
+<text x="450" y="145" text-anchor="middle" fill="#333" font-size="10">Listened to each call personally</text>
+<text x="450" y="158" text-anchor="middle" fill="#333" font-size="10">labels.csv → urgency · language · keywords_heard</text>
+
+<rect x="610" y="106" width="240" height="64" rx="6" fill="#DCEEFB" stroke="#1B6CA8" stroke-width="1.5"/>
+<text x="730" y="128" text-anchor="middle" fill="#1B3A6B" font-size="12" font-weight="bold">Labelled Dataset</text>
+<text x="730" y="145" text-anchor="middle" fill="#333" font-size="10">130 calls labelled (PP1)</text>
+<text x="730" y="158" text-anchor="middle" fill="#333" font-size="10">High: 57 · Medium: 44 · Low: 29</text>
+
+<line x1="290" y1="138" x2="326" y2="138" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="570" y1="138" x2="606" y2="138" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="730" y1="170" x2="730" y2="192" stroke="#555" stroke-width="1.5"/>
+<line x1="730" y1="192" x2="450" y2="192" stroke="#555" stroke-width="1.5"/>
+<line x1="450" y1="192" x2="450" y2="204" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- PREPROCESSING -->
+<rect x="280" y="204" width="340" height="74" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+<text x="450" y="224" text-anchor="middle" fill="#1B5E20" font-size="12" font-weight="bold">Preprocessing  (01_preprocess.py)</text>
+<text x="450" y="241" text-anchor="middle" fill="#333" font-size="10">① Noise Reduction — noisereduce library</text>
+<text x="450" y="255" text-anchor="middle" fill="#333" font-size="10">② Resample to 16kHz — standardise for Whisper + librosa</text>
+<text x="450" y="269" text-anchor="middle" fill="#333" font-size="10">③ Silence Trimming — remove dead air</text>
+
+<line x1="450" y1="278" x2="450" y2="298" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- FEATURE EXTRACTION HEADER -->
+<rect x="150" y="298" width="600" height="24" rx="4" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+<text x="450" y="315" text-anchor="middle" fill="#E65100" font-size="11" font-weight="bold">Feature Extraction  (02_extract_features.py) — 92 features total</text>
+
+<line x1="310" y1="322" x2="270" y2="342" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="590" y1="322" x2="630" y2="342" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Acoustic Branch -->
+<rect x="50" y="342" width="380" height="130" rx="6" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.5"/>
+<text x="240" y="362" text-anchor="middle" fill="#E65100" font-size="12" font-weight="bold">Acoustic Branch  (88 features)</text>
+<text x="240" y="378" text-anchor="middle" fill="#555" font-size="10" font-style="italic">Works for ALL languages — no transcription needed</text>
+<text x="240" y="395" text-anchor="middle" fill="#333" font-size="10">MFCCs (40 coeff × mean+std = 80 features)</text>
+<text x="240" y="410" text-anchor="middle" fill="#555" font-size="9">Shape of sound per frame → summarised across full call</text>
+<text x="240" y="426" text-anchor="middle" fill="#333" font-size="10">Pitch mean + std · RMS Energy mean + std</text>
+<text x="240" y="441" text-anchor="middle" fill="#333" font-size="10">Zero Crossing Rate · Spectral Centroid</text>
+<text x="240" y="456" text-anchor="middle" fill="#333" font-size="10">Speaking Rate · Jitter</text>
+
+<!-- Textual Branch -->
+<rect x="470" y="342" width="380" height="130" rx="6" fill="#FCE4EC" stroke="#C62828" stroke-width="1.5"/>
+<text x="660" y="362" text-anchor="middle" fill="#B71C1C" font-size="12" font-weight="bold">Textual Branch  (4 features)</text>
+<text x="660" y="378" text-anchor="middle" fill="#555" font-size="10" font-style="italic">Whisper STT → transcript → NLP features</text>
+<text x="660" y="395" text-anchor="middle" fill="#333" font-size="10">Keyword Count — from keywords_heard + TF-IDF</text>
+<text x="660" y="410" text-anchor="middle" fill="#333" font-size="10">Word Count · Repetition Rate · Sentiment Polarity</text>
+<text x="660" y="430" text-anchor="middle" fill="#C62828" font-size="10" font-weight="bold">⚠ Whisper fails on Sinhala</text>
+<text x="660" y="446" text-anchor="middle" fill="#C62828" font-size="9">Outputs Arabic/Cyrillic → textual branch contributes nothing</text>
+<text x="660" y="461" text-anchor="middle" fill="#C62828" font-size="9">Acoustic branch handles Sinhala independently</text>
+
+<line x1="240" y1="472" x2="240" y2="492" stroke="#555" stroke-width="1.5"/>
+<line x1="240" y1="492" x2="450" y2="492" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="660" y1="472" x2="660" y2="492" stroke="#555" stroke-width="1.5"/>
+<line x1="660" y1="492" x2="452" y2="492" stroke="#555" stroke-width="1.5"/>
+
+<!-- features.csv -->
+<rect x="330" y="492" width="240" height="36" rx="6" fill="#E8EAF6" stroke="#3949AB" stroke-width="1.5"/>
+<text x="450" y="510" text-anchor="middle" fill="#1A237E" font-size="11" font-weight="bold">features.csv</text>
+<text x="450" y="523" text-anchor="middle" fill="#333" font-size="10">130 rows × 92 feature columns</text>
+
+<line x1="450" y1="528" x2="450" y2="548" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- TRAINING -->
+<rect x="200" y="548" width="500" height="84" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+<text x="450" y="568" text-anchor="middle" fill="#1B5E20" font-size="12" font-weight="bold">Model Training  (03_train.py)</text>
+<text x="450" y="585" text-anchor="middle" fill="#333" font-size="10">Pipeline: StandardScaler → SMOTE → Random Forest (200 trees)</text>
+<text x="450" y="600" text-anchor="middle" fill="#333" font-size="10">SMOTE: synthetically balances High/Medium/Low classes</text>
+<text x="450" y="615" text-anchor="middle" fill="#333" font-size="10">Validation: 5-Fold Stratified Cross-Validation</text>
+<text x="450" y="628" text-anchor="middle" fill="#555" font-size="9">Also tested: SVM (RBF) · Logistic Regression → RF most stable (std 0.092)</text>
+
+<line x1="450" y1="632" x2="450" y2="652" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- RESULTS -->
+<rect x="50" y="652" width="800" height="80" rx="6" fill="#E3F0FB" stroke="#1B6CA8" stroke-width="1.5"/>
+<text x="450" y="672" text-anchor="middle" fill="#1B3A6B" font-size="12" font-weight="bold">Results &amp; Evaluation  (04_evaluate.py · 06–09_*.py)</text>
+
+<rect x="70" y="682" width="150" height="38" rx="4" fill="white" stroke="#1B6CA8" stroke-width="1"/>
+<text x="145" y="697" text-anchor="middle" fill="#1B3A6B" font-size="10" font-weight="bold">Macro F1: 0.38</text>
+<text x="145" y="712" text-anchor="middle" fill="#555" font-size="9">High 0.52 · Med 0.38 · Low 0.25</text>
+
+<rect x="240" y="682" width="150" height="38" rx="4" fill="white" stroke="#1B6CA8" stroke-width="1"/>
+<text x="315" y="697" text-anchor="middle" fill="#1B3A6B" font-size="10" font-weight="bold">SHAP Explainability</text>
+<text x="315" y="712" text-anchor="middle" fill="#555" font-size="9">Acoustic features dominate top 15</text>
+
+<rect x="410" y="682" width="150" height="38" rx="4" fill="white" stroke="#1B6CA8" stroke-width="1"/>
+<text x="485" y="697" text-anchor="middle" fill="#1B3A6B" font-size="10" font-weight="bold">Language Breakdown</text>
+<text x="485" y="712" text-anchor="middle" fill="#555" font-size="9">Tamil 0.43 · Sinhala 0.42</text>
+
+<rect x="580" y="682" width="250" height="38" rx="4" fill="white" stroke="#1B6CA8" stroke-width="1"/>
+<text x="705" y="697" text-anchor="middle" fill="#1B3A6B" font-size="10" font-weight="bold">TF-IDF Keyword Discovery</text>
+<text x="705" y="712" text-anchor="middle" fill="#555" font-size="9">85% manual keywords never appeared → rebuilt</text>
+
+<line x1="450" y1="732" x2="450" y2="752" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Flask Demo -->
+<rect x="300" y="752" width="300" height="44" rx="6" fill="#EDE7F6" stroke="#4527A0" stroke-width="1.5"/>
+<text x="450" y="772" text-anchor="middle" fill="#311B92" font-size="12" font-weight="bold">Flask Web Demo  (app.py)</text>
+<text x="450" y="788" text-anchor="middle" fill="#333" font-size="10">Upload call → High/Medium/Low + confidence scores</text>
+
+<!-- PP2 LABEL -->
+<rect x="50" y="814" width="800" height="22" rx="4" fill="#E8F5E9"/>
+<text x="450" y="830" text-anchor="middle" fill="#2E7D32" font-size="12" font-weight="bold">PP2 — PLANNED (deadline: end of August 2026)</text>
+
+<!-- PP2 Steps -->
+<rect x="50" y="848" width="380" height="60" rx="6" fill="#F1F8E9" stroke="#558B2F" stroke-width="1.5"/>
+<text x="60" y="866" fill="#33691E" font-size="11" font-weight="bold">① Label ~867 remaining calls (~3 days)</text>
+<text x="60" y="882" fill="#555" font-size="10">Manual labelling of all audio/ files</text>
+<text x="60" y="896" fill="#555" font-size="10">Blind self-relabel subset → Cohen's Kappa reliability score</text>
+
+<rect x="470" y="848" width="380" height="60" rx="6" fill="#F1F8E9" stroke="#558B2F" stroke-width="1.5"/>
+<text x="480" y="866" fill="#33691E" font-size="11" font-weight="bold">② Speaker-Relative Pitch Normalisation</text>
+<text x="480" y="882" fill="#555" font-size="10">Convert raw Hz → semitones relative to per-call median</text>
+<text x="480" y="896" fill="#555" font-size="10">Removes gender/speaker bias · preserves distress signal</text>
+
+<rect x="50" y="924" width="380" height="60" rx="6" fill="#F1F8E9" stroke="#558B2F" stroke-width="1.5"/>
+<text x="60" y="942" fill="#33691E" font-size="11" font-weight="bold">③ Probability Calibration</text>
+<text x="60" y="958" fill="#555" font-size="10">Add CalibratedClassifierCV (Platt/sigmoid)</text>
+<text x="60" y="972" fill="#555" font-size="10">Confidence scores become meaningful probabilities</text>
+
+<rect x="470" y="924" width="380" height="60" rx="6" fill="#F1F8E9" stroke="#558B2F" stroke-width="1.5"/>
+<text x="480" y="942" fill="#33691E" font-size="11" font-weight="bold">④ Ablation Study + Permutation Importance</text>
+<text x="480" y="958" fill="#555" font-size="10">Acoustic-only vs. Textual-only vs. Fused models</text>
+<text x="480" y="972" fill="#555" font-size="10">Proves multimodal fusion earns its keep</text>
+
+<rect x="50" y="1000" width="380" height="66" rx="6" fill="#FCE4EC" stroke="#C62828" stroke-width="1.5"/>
+<text x="60" y="1018" fill="#B71C1C" font-size="11" font-weight="bold">⑤ Facebook MMS for Sinhala ASR</text>
+<text x="60" y="1034" fill="#555" font-size="10">Replace Whisper with facebook/mms-1b-all for Sinhala</text>
+<text x="60" y="1048" fill="#555" font-size="10">MMS trained on 1100+ languages incl. Sinhala</text>
+<text x="60" y="1060" fill="#555" font-size="10">Fixes textual branch → all 4 languages fully supported</text>
+
+<rect x="470" y="1000" width="380" height="66" rx="6" fill="#FCE4EC" stroke="#C62828" stroke-width="1.5"/>
+<text x="480" y="1018" fill="#B71C1C" font-size="11" font-weight="bold">⑥ Frozen XLM-R Embeddings</text>
+<text x="480" y="1034" fill="#555" font-size="10">Replace keyword count with 768-dim semantic vectors</text>
+<text x="480" y="1048" fill="#555" font-size="10">XLM-R pretrained on 100 langs incl. Sinhala/Tamil</text>
+<text x="480" y="1060" fill="#555" font-size="10">No fine-tuning (small dataset) · PCA if needed</text>
+
+<rect x="200" y="1082" width="500" height="50" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+<text x="450" y="1102" text-anchor="middle" fill="#1B5E20" font-size="11" font-weight="bold">⑦ Final Week — Full Re-evaluation + Write-up</text>
+<text x="450" y="1118" text-anchor="middle" fill="#555" font-size="10">Retrain on full dataset · compare PP1 vs PP2 results · prepare report</text>
+
+<!-- Data Sources -->
+<rect x="50" y="1148" width="800" height="60" rx="6" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5"/>
+<text x="450" y="1168" text-anchor="middle" fill="#E65100" font-size="11" font-weight="bold">Data Sources</text>
+<text x="160" y="1188" text-anchor="middle" fill="#333" font-size="10">PP1: Self-recorded synthetic calls</text>
+<text x="450" y="1188" text-anchor="middle" fill="#333" font-size="10">PP2: ~867 remaining unlabelled calls in audio/</text>
+<text x="750" y="1188" text-anchor="middle" fill="#333" font-size="10">Future: Real DMC call centre recordings</text>
+<line x1="280" y1="1155" x2="280" y2="1200" stroke="#E65100" stroke-width="0.8" stroke-dasharray="3,3"/>
+<line x1="620" y1="1155" x2="620" y2="1200" stroke="#E65100" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+<!-- Legend -->
+<rect x="50" y="1222" width="800" height="36" rx="4" fill="#ECEFF1"/>
+<rect x="70" y="1234" width="14" height="12" rx="2" fill="#DCEEFB" stroke="#1B6CA8" stroke-width="1"/>
+<text x="90" y="1244" fill="#333" font-size="10">Data / Storage</text>
+<rect x="190" y="1234" width="14" height="12" rx="2" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+<text x="210" y="1244" fill="#333" font-size="10">Processing / Training</text>
+<rect x="350" y="1234" width="14" height="12" rx="2" fill="#FFF8E1" stroke="#F9A825" stroke-width="1"/>
+<text x="370" y="1244" fill="#333" font-size="10">Acoustic Features</text>
+<rect x="490" y="1234" width="14" height="12" rx="2" fill="#FCE4EC" stroke="#C62828" stroke-width="1"/>
+<text x="510" y="1244" fill="#333" font-size="10">Textual / ASR (PP2 fix)</text>
+<rect x="660" y="1234" width="14" height="12" rx="2" fill="#EDE7F6" stroke="#4527A0" stroke-width="1"/>
+<text x="680" y="1244" fill="#333" font-size="10">Deployment</text>
+
+<!-- Footer -->
+<text x="450" y="1280" text-anchor="middle" fill="#999" font-size="9">R26_DS_011 · IT22644480 · SHILMA THANSEEL · SLIIT</text>
+
+</svg>

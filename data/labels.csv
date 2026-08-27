@@ -8,7 +8,7 @@ call10.ogg,10,english,o,F,High,3,"Fire,3 workers inside",Fire in Warehouse 3 wor
 call11.ogg,10,sinhala,s,F,Low,1,Current Giya,no current due to rain
 call13.ogg,6,sinhala,o,F,High,3,"Ginnak, dennek athule",Fire in Warehouse 2 workers inside
 call14.ogg,10,sinhala,s,F,High,3,"Wathura athule, dennek athule",Water inside house 2 people trapped
-call17.ogg,10,singlish,s,F,Medium,2,"Ginnak, Sure na",Maybe fire not sure
+call17.ogg,10,singlish,s,F,High,2,"Ginnak, Sure na",Maybe fire not sure
 call18.ogg,10,singlish,s,F,Medium,2,"Ginnak, exact place not sure",Maybe fire not sure
 call19.ogg,10,singlish,s,F,Medium,2,"water near back door, im not sure",
 call21.ogg,10,tamil,s,F,High,3,"Thee, Pugai",Fire but don't know where they are
@@ -26,7 +26,7 @@ call36.ogg,7,singlish,s,M,Medium,3,"Wathura, wadi wenna puluwan",Water levels ma
 call37.ogg,7,singlish,s,M,Low,3,,Just informing flood is getting worse
 call38.ogg,10,singlish,o,M,High,3,Loku Ginnak,neighbours house is on fire
 call39.ogg,3,sinhala,s,M,Medium,2,"udhaw, asaneepai",Mom is sick
-call40.ogg,8,tamil,s,F,Medium,3,Thanni mulam kaal warai,flooded Water near ankle
+call40.ogg,8,tamil,s,F,High,3,Thanni mulam kaal warai,flooded Water near ankle
 call41.ogg,8,tamil,s,F,High,3,Thanni wegamaga uyargiradhu,water rising rapidly
 call42.ogg,7,tamil,s,F,Low,3,,Just information
 call43.ogg,9,tamil,o,F,High,3,"Thee, iruvar ulle","up floor fire, 2 ppl trapped"
@@ -75,9 +75,6 @@ call97.ogg,5,singlish,s,F,High,3,Gini gannawa,shop on fire
 call98.ogg,4,singlish,s,F,Medium,2,"Please help, udhawkaranna",only please help is told no info
 call99.ogg,3,sinhala,s,F,High,3,"Gini, husma ganna amaarui","fire, cant breathe due to smoke"
 call100.ogg,3,singlish,s,F,Medium,1,"signal na, gangwathura awith",flood no signal
-call108.ogg,11,sinhala,s,F,High,3,"Gangwathura, awidaganna ba,wathura wadi wenawa",trapped in flood
-call109.ogg,9,sinhala,s,F,High,3,"Wathura, yatawela, keepa denek innawa",many ppl trapped in flood
-call110.ogg,9,sinhala,s,F,High,3,"ginnak, hirawela, 3 denek, ikmanata",fire incident at home
 call112.ogg,7,sinhala,s,M,Medium,1,"Bayai, wathura",scared
 call113.ogg,9,sinhala,s,M,High,2,"Gangwathura, udawkaranna, 5 denek",5 ppl trapped in flood
 call114.ogg,6,sinhala,s,M,Medium,2,"wathura athula, current giya, bayai",powercut and flood
@@ -99,7 +96,7 @@ call139.ogg,5,tamil,s,F,High,2,"puhai, payandhu","smoke, scared"
 call140.ogg,11,tanglish,o,F,High,3,"Thee, parawuhiradhu, puhai",fire incident
 call141.ogg,9,tanglish,o,F,High,3,"Child, trapped ,water",car park flooded child trapped
 call150.ogg,8,tamil,s,F,Medium,2,paadhuhappaha,"everyoe is safe, theres a fire"
-call151.ogg,10,tamil,s,F,Low,3,,"Just informing"
+call151.ogg,10,tamil,s,F,Low,3,,Just informing
 call152.ogg,8,tamil,s,F,Low,3,paadhuhappaha,Water entering but they are safe
 call153.ogg,10,tanglish,s,F,Medium,2,maybe smoke,not sure if it is fire
 call158.ogg,9,tanglish,s,F,High,3,"Water fast ahwarudhu, paadhai blocked","Water rising, road blocked"
@@ -107,28 +104,165 @@ call161.ogg,10,tanglish,s,F,Medium,2,"Mele irikirom, udhawi, keel mattam thannee
 call174.ogg,8,tamil,s,F,High,3,"Thanneer, weliya wara mudiyawillai",water rising
 call176.ogg,11,tamil,o,F,Medium,3,"Thanneer sutri, mele, thathta",water around the house a grandfather is stuck on top floor
 call191.ogg,4,tanglish,o,M,Low,2,"siriya thee, paadhuhaapaha",small fire everyone is safe
-call193.ogg,5,tamil,s,M,Low,3,,"Just informing"
+call193.ogg,5,tamil,s,M,Low,3,,Just informing
 call195.ogg,4,tamil,s,M,High,3,"Thee, kulandhaihal","fire incident, children trapped"
 call198.ogg,8,tamil,s,F,Medium,3,"thanneer, kaal mattam, kudumbangal mele",water near leg level
 call200.ogg,7,tanglish,s,M,Medium,3,"ground floor, water knee level, family mela",family in top floor
-call215.ogg,6,sinhala,s,F,Low,3,,"just informing about rain fall"
+call215.ogg,6,sinhala,s,F,Low,3,,just informing about rain fall
 call221.ogg,8,tamil,s,M,Medium,3,"siriya thee, ellarum weliye",small fire everyone is safe
-call244.ogg,6,sinhala,s,F,Low,2,,"just informing bout rain"
-call245.ogg,6,sinhala,s,M,Low,3,,"random complaint"
-call246.ogg,6,sinhala,s,M,Low,3,,"random complaint"
-call247.ogg,4,sinhala,s,M,Low,2,,"complain about weather"
+call244.ogg,6,sinhala,s,F,Low,2,,just informing bout rain
+call245.ogg,6,sinhala,s,M,Low,3,,random complaint
+call246.ogg,6,sinhala,s,M,Low,3,,random complaint
+call247.ogg,4,sinhala,s,M,Low,2,,complain about weather
 call276.ogg,3,sinhala,s,F,High,3,"Wathura ihala yanawa, gedara yatawei",water rising rapidly
 call280.ogg,10,sinhala,s,F,Medium,2,"pahala thattuwa yata wela, uda thaatuwe inne",lower floor flooded they are in top floor
 call286.ogg,11,sinhala,s,F,Medium,2,"pahala mahala yata wela, uda mahale inne",lower floor flooded they are in top floor
 call305.ogg,7,tamil,s,F,Medium,2,keel thalaththil neer,lower floor flooded they are in top floor
 call335.ogg,9,tanglish,s,F,Medium,3,"ground floor flooded, naanga upfloor",ground floor flooded people are in upper floor
 call240.ogg,9,tanglish,s,F,Medium,3,paadhai full ah cover,water around the house
-call346.ogg,9,sinhala,s,F,Low,3,,"random complaint"
-call354.ogg,8,sinhala,s,F,Low,3,,"random complaint"
-call355.ogg,8,sinhala,s,F,Low,3,,"random complaint"
+call346.ogg,9,sinhala,s,F,Low,3,,random complaint
+call354.ogg,8,sinhala,s,F,Low,3,,random complaint
+call355.ogg,8,sinhala,s,F,Low,3,,random complaint
 call364.ogg,6,sinhala,s,F,Medium,3,wathura kakul mattamat,water near legs
-call371.ogg,2,sinhala,s,F,Low,3,,"random complaint"
-call372.ogg,2,sinhala,s,F,Low,3,,"random complaint"
-call396.ogg,8,sinhala,s,F,Low,2,,"random complaint"
-call403.ogg,7,sinhala,s,F,Low,3,,"random complaint"
+call371.ogg,2,sinhala,s,F,Low,3,,random complaint
+call372.ogg,2,sinhala,s,F,Low,3,,random complaint
+call396.ogg,8,sinhala,s,F,Low,2,,random complaint
+call403.ogg,7,sinhala,s,F,Low,3,,random complaint
 call404.ogg,12,sinhala,s,F,Medium,1,"palleha thattuwa wathura, api uda thattuwa",water filled in ground floor they are in up floor
+call459.ogg,8.1,tamil,s,f,Medium,2,"paduhaapaaha , thanneer ulle",
+call468.ogg,9.7,tamil,s,f,High,3,Thanneer fast ah ,
+call472.ogg,10.9,tamil,s,f,Medium,3,Mele kaathirikkirom,
+call474.ogg,10.7,tanglish,s,f,Medium,3,"lower level full , mela help ",
+call481.ogg,9.9,tanglish,s,f,High,2,"Gas cylinder, fire",
+call484.ogg,8.8,tanglish,s,f,High,1,"full smoke , fire",
+call485.ogg,9.2,tanglish,s,f,High,3,Water fast ,
+call491.ogg,6.4,singlish,s,f,Low,2,not sure ,
+call502.ogg,5,singlish,s,f,Medium,2,maybe wadi wenawa,
+call504.ogg,4,tamil,s,m,Low,3,"siriya thee, ellorum weliye",
+call506.ogg,5,tamil,s,m,Low,2,puhai,
+call507.ogg,5,tamil,s,m,High,3,"Thanneer weetukkul, udane udhawi",
+call508.ogg,4,tamil,s,m,High,3,"Kulandhaihal, thee",
+call509.ogg,6.2,tanglish,s,m,High,3,"fire Parawudhu, rendu staff ulle",
+call511.ogg,8.7,tamil,s,f,Medium,3,Mulangaal warai thanni ,
+call513.ogg,7.2,sinhala,s,f,Low,2,hariyatama danne na ,
+call516.ogg,1.8,tamil,s,f,Medium,1,udhawi,
+call517.ogg,2.1,tamil,s,f,High,1,thayawu seydhu udhawi,
+call518.ogg,2.3,tamil,s,f,High,2,udane udhawi,
+call519.ogg,2.3,tamil,s,f,High,2,kaapatrungal,
+call524.ogg,6.5,tamil,s,f,High,3,"Puhai , thee",
+call530.ogg,6.2,sinhala,s,f,Low,3,,
+call531.ogg,7.9,sinhala,s,f,High,3,"Wathura wadi , thaththa awidaganna ba",
+call532.ogg,7.6,sinhala,s,f,High,3,"wathura godak, keepa denek ",
+call535.ogg,7.6,tamil,s,f,Low,2,,
+call536.ogg,5.8,tanglish,s,m,High,2,"water rise aahudhu , weliya wara mudiyala ",
+call537.ogg,8.3,tamil,s,m,Low,3,"siriyathee, ellarum weliye ",
+call538.ogg,2.8,sinhala,s,f,High,2,Udhaw karanna ,
+call539.ogg,3,sinhala,s,f,High,2,ikmanata ena  ,
+call540.ogg,2.4,sinhala,s,f,High,3,hira wela ,
+call541.ogg,2.6,sinhala,s,f,High,2,gini gannawa ,
+call542.ogg,3.3,sinhala,s,f,High,2,wathura godak,
+call543.ogg,10.2,singlish,s,f,High,3,"ginna pathiranawa , beraganna , udhawkaranna",
+call544.ogg,12.3,sinhala,s,f,High,3,"hira wela, wathura , beraganna , udhawkaranna",
+call545.ogg,11.9,sinhala,s,f,High,3,"eliyata yanna ba , udhawkaranna karunaakarala ",
+call546.ogg,8.6,tamil,s,f,High,3,"wella neer ulle , kulandhaigal ulle sikki ullom ",
+call547.ogg,8.2,sinhala,s,f,High,2,"ikman karanna , hadissi, udhawkaranna ",
+call548.ogg,5.9,sinhala,s,f,Low,2,,
+call551.ogg,8.3,singlish,o,f,High,3,"fire , lamai dennek hirawela ",
+call552.ogg,2.1,sinhala,s,f,Medium,1,udhaw karanna ,
+call554.ogg,2.2,sinhala,s,f,High,2,hira wela inne,
+call555.ogg,3,sinhala,s,f,Medium,1,wathura godak enawa ,
+call557.ogg,9,tamil,s,f,High,3,"thee , moowar ullar ",
+call559.ogg,5.5,sinhala,s,f,Low,2,,
+call560.ogg,6.6,singlish,s,f,Low,3,,
+call561.ogg,5.2,singlish,s,f,Low,3,,
+call562.ogg,6.8,sinhala,s,f,Low,3,,
+call563.ogg,6.5,sinhala,s,m,Low,3,,
+call564.ogg,6.9,sinhala,s,m,Low,1,,
+call565.ogg,4.4,sinhala,s,m,Low,1,,
+call567.ogg,6.1,sinhala,s,m,Medium,2,"phone eke battery adu ,wathura enawa",
+call568.ogg,9.6,tamil,o,f,High,2,"thee , oruwar ulle",
+call569.ogg,2.7,sinhala,s,f,High,3,ge athule hira wela ,
+call570.ogg,4.9,sinhala,s,f,High,3,"udhawkaranna , ginna pathirenawa ",
+call571.ogg,4.5,sinhala,s,f,High,3,husma ganna amaarui ,
+call572.ogg,4.3,sinhala,s,f,High,3,beraganna wathura ge athulata enawa ,
+call574.ogg,2.1,sinhala,s,f,High,3,husma ganna amaarui ,
+call578.ogg,2.2,sinhala,s,f,High,3,ane danma udhawkaranna ,
+call579.ogg,7.2,sinhala,s,m,High,3,"4 denek, thatha awidaganna ba",
+call595.ogg,4.1,sinhala,s,f,High,3,ginna ,
+call597.ogg,3.7,sinhala,s,f,High,3,thawa tikakin mulu gedara yata wei ,
+call601.ogg,9.5,sinhala,s,m,Low,3,,
+call603.ogg,13.4,sinhala,o,m,Medium,3,"basement , wathura, lift weda na",
+call604.ogg,12.3,singlish,o,m,Medium,2,water level kakul mattame,
+call607.ogg,7.9,sinhala,o,f,High,3,"athule dennek , ginnak ",
+call608.ogg,11.5,sinhala,o,f,Medium,2,"phala mahala wathura, 4 dnek uda ",
+call609.ogg,10.5,sinhala,o,f,High,3,"Ginnak, pathirenawa ",
+call610.ogg,9.3,sinhala,o,f,High,3,"Wathura, wayasaka amma , hirawela",
+call611.ogg,10,sinhala,o,f,High,3,"Ginnak,husma ganna amaarui, sewakayo dennek,athule",
+call613.ogg,8.9,singlish,s,f,High,3,"Water fast, eliyata yanna ba",
+call614.ogg,12.8,singlish,s,f,High,3,"fire , help ,thatha",
+call617.ogg,8.6,sinhala,s,f,High,3,"Hirawela , water enawa",
+call622.ogg,5.7,sinhala,s,f,Medium,1,udathattuwata ,
+call625.ogg,7.2,tanglish,s,f,Medium,3,flood water groundfloor ,
+call627.ogg,6.2,tanglish,s,f,High,3,"Child ulle, seekiram waanga",
+call629.ogg,7.8,tamil,s,f,High,3,"Thee, seekiram ",
+call631.ogg,6.3,tamil,s,f,High,3,"Puhai adhiham, ulle",
+call640.ogg,6.8,tanglish,s,f,High,2,water fast ah rise ,
+call644.ogg,6.9,tanglish,s,f,Medium,3,knee level water,
+call646.ogg,8.9,singlish,s,f,Medium,2,ground floor water,
+call651.ogg,6.3,tamil,s,f,High,3,Thanneer wehamaaha uyarhiradhu,
+call654.ogg,5.9,tamil,s,f,High,3,suwaasikkamudiyawillai,
+call655.ogg,5.9,tamil,s,f,Medium,3,thanneer mulangaal,
+call657.ogg,6.9,sinhala,s,f,High,3,"Husma ganna ba , ginnak",
+call663.ogg,9.8,tanglish,s,f,Medium,3,ground floor water,
+call667.ogg,9.9,tanglish,s,f,High,3,water fast ah rise ,
+call675.ogg,9.8,sinhala,s,f,Low,2,,
+call679.ogg,6.3,sinhala,s,f,High,3,"gini, thaththa athule",
+call680.ogg,3.8,sinhala,s,f,Low,3,,
+call684.ogg,8.5,sinhala,s,f,Low,2,,
+call685.ogg,11.1,sinhala,s,f,Low,3,,
+call686.ogg,11.7,sinhala,o,f,High,3,ginnak,
+call687.ogg,14.9,sinhala,o,f,Medium,2,basement water,
+call688.ogg,14.8,sinhala,o,f,High,2,ginnak,
+call690.ogg,7.7,singlish,s,m,Medium,3,wathura athul wenna puluwan,
+call694.ogg,18.7,singlish,o,f,High,2,"Hirawela, employees 100",
+call696.ogg,4,singlish,s,f,Medium,1,danma rescue,
+call698.ogg,3.2,sinhala,s,f,High,2,"wathura wadi, bayai",
+call699.ogg,6.3,sinhala,s,f,High,3,"beraganna, eliyata yanna ba",
+call700.ogg,6,sinhala,s,f,High,3,ginna pathirenawa,
+call801.ogg,3.8,sinhala,s,f,Medium,2,udathattuwe hirawela,
+call802.ogg,2,tamil,s,f,High,3,amma ulle,
+call805.ogg,2.4,tamil,s,f,High,3,"Kaapatrungal, thayawuseydhu",
+call809.ogg,2.3,tamil,s,f,High,2,Weliye wara mudiyala,
+call823.ogg,4.8,sinhala,s,f,Medium,3,dhumak,
+call834.ogg,5.3,sinhala,s,f,High,3,"Loku ginnak, pathirenawa",
+call843.ogg,5,singlish,s,f,Medium,2,"sure na ,roof dhuma ",
+call845.ogg,26.1,sinhala,s,f,Medium,3,gewal langata wathura,
+call847.ogg,12,sinhala,s,f,Medium,3,gate eka lanaga wathura,
+call848.ogg,6.9,sinhala,s,f,Medium,2,"sure na , dhuma ",
+call849.ogg,10.1,sinhala,s,f,Medium,2,samaharawita,
+call851.ogg,5.1,sinhala,s,f,Medium,3,level wadi wenanawa,
+call856.ogg,4.4,sinhala,s,f,High,3,husma ganna amaarui,
+call859.ogg,5.9,tamil,s,f,High,2,thee,
+call863.ogg,4.6,tamil,s,f,High,3,udhawa mudiyuma,
+call864.ogg,5.9,sinhala,s,f,High,3,"lamai , hirawela ",
+call865.ogg,5.2,singlish,s,f,Low,3,,
+call868.ogg,19,sinhala,s,f,Medium,2,"kattiya hirawela, udhaw",
+call869.ogg,18.3,sinhala,s,f,Medium,3,udhawkaranna,
+call871.ogg,15.5,sinhala,s,f,Medium,2,udhawkaranna,
+call872.ogg,24.6,sinhala,s,f,Medium,2,udhawkaranna,
+call879.ogg,9.7,sinhala,s,m,Medium,3,arakshitha thana,
+call881.ogg,6.7,sinhala,s,m,Low,2,,
+call884.ogg,5.6,sinhala,s,f,High,3,"wathura, aachchi",
+call887.ogg,5,sinhala,s,m,Medium,2,car gahagena yanawa,
+call897.ogg,8,sinhala,s,f,High,3,"fire, grandmother inside",
+call898.ogg,9.6,tamil,s,f,Medium,3,need food and water,
+call899.ogg,2.9,sinhala,s,f,Low,3,,
+call918.ogg,10.2,sinhala,s,f,Low,3,,
+call921.ogg,7.6,sinhala,s,m,Low,3,,
+call922.ogg,9.5,sinhala,s,m,High,3,"udhawkaranna, pasdenek",
+call923.ogg,6.5,sinhala,s,m,Medium,1,"current giya , bayai, wathura",
+call933.ogg,10.3,singlish,o,f,High,2,"flames, fire, lamai",
+call934.ogg,11.8,singlish,o,f,High,3,"fire, sewakayo",
+call936.ogg,2.4,tamil,s,m,High,3,meetkungal,child caller 
+call946.ogg,5.9,tanglish,o,f,Medium,2,"fire, theriyala, smoke",
+call947.ogg,5.2,tamil,s,f,Low,2,,just complaining

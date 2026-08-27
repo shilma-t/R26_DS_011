@@ -1,0 +1,713 @@
+======================================================================
+ABLATION MANIFEST
+  Run timestamp  : 2026-08-17T20:51:41
+  Script SHA-256 : 01bf7eb9fd417484175bba1917b00d83dc3d5d60ccca05506e1897c19a1f188d
+
+── Feature matrix ──
+  Path    : C:\Users\shafr\Desktop\Uni\RESEARCH\R26_DS_011\data\features.csv
+  Shape   : 267 rows × 117 columns
+  SHA-256 : 087a6bda1b5041b2a063e8fc1008d669577a0c819c1d9ab3cbdd0c181ad007e7
+
+── Excluded columns (metadata — never in X) ──
+  filename
+  language
+  transcript
+  urgency_label
+
+── Column groups ──
+  acoustic (91 cols)
+    mfcc_1_mean
+    mfcc_1_std
+    mfcc_2_mean
+    mfcc_2_std
+    mfcc_3_mean
+    mfcc_3_std
+    mfcc_4_mean
+    mfcc_4_std
+    mfcc_5_mean
+    mfcc_5_std
+    mfcc_6_mean
+    mfcc_6_std
+    mfcc_7_mean
+    mfcc_7_std
+    mfcc_8_mean
+    mfcc_8_std
+    mfcc_9_mean
+    mfcc_9_std
+    mfcc_10_mean
+    mfcc_10_std
+    mfcc_11_mean
+    mfcc_11_std
+    mfcc_12_mean
+    mfcc_12_std
+    mfcc_13_mean
+    mfcc_13_std
+    mfcc_14_mean
+    mfcc_14_std
+    mfcc_15_mean
+    mfcc_15_std
+    mfcc_16_mean
+    mfcc_16_std
+    mfcc_17_mean
+    mfcc_17_std
+    mfcc_18_mean
+    mfcc_18_std
+    mfcc_19_mean
+    mfcc_19_std
+    mfcc_20_mean
+    mfcc_20_std
+    mfcc_21_mean
+    mfcc_21_std
+    mfcc_22_mean
+    mfcc_22_std
+    mfcc_23_mean
+    mfcc_23_std
+    mfcc_24_mean
+    mfcc_24_std
+    mfcc_25_mean
+    mfcc_25_std
+    mfcc_26_mean
+    mfcc_26_std
+    mfcc_27_mean
+    mfcc_27_std
+    mfcc_28_mean
+    mfcc_28_std
+    mfcc_29_mean
+    mfcc_29_std
+    mfcc_30_mean
+    mfcc_30_std
+    mfcc_31_mean
+    mfcc_31_std
+    mfcc_32_mean
+    mfcc_32_std
+    mfcc_33_mean
+    mfcc_33_std
+    mfcc_34_mean
+    mfcc_34_std
+    mfcc_35_mean
+    mfcc_35_std
+    mfcc_36_mean
+    mfcc_36_std
+    mfcc_37_mean
+    mfcc_37_std
+    mfcc_38_mean
+    mfcc_38_std
+    mfcc_39_mean
+    mfcc_39_std
+    mfcc_40_mean
+    mfcc_40_std
+    pitch_mean
+    pitch_std
+    rms_mean
+    rms_std
+    zcr_mean
+    spec_centroid_mean
+    speaking_rate
+    jitter
+    rms_slope
+    rms_gradient
+    speaking_rate_change
+  asr_quality (1 cols)
+    asr_quality
+  old_text (4 cols)
+    keyword_count_original
+    word_count
+    repetition_rate
+    sentiment_polarity
+  expanded_text (4 cols)
+    keyword_count
+    word_count
+    repetition_rate
+    sentiment_polarity
+  context (16 cols)
+    sin_context_score
+    sin_danger_count
+    sin_help_request_count
+    sin_high_risk_phrase_count
+    sin_immediacy_count
+    sin_location_context_count
+    sin_person_at_risk_count
+    sin_safety_state_count
+    tam_context_score
+    tam_danger_count
+    tam_help_request_count
+    tam_high_risk_phrase_count
+    tam_immediacy_count
+    tam_location_context_count
+    tam_person_at_risk_count
+    tam_safety_state_count
+
+── Conditions (exact feature names) ──
+  A_acoustic  →  91 features
+    mfcc_1_mean
+    mfcc_1_std
+    mfcc_2_mean
+    mfcc_2_std
+    mfcc_3_mean
+    mfcc_3_std
+    mfcc_4_mean
+    mfcc_4_std
+    mfcc_5_mean
+    mfcc_5_std
+    mfcc_6_mean
+    mfcc_6_std
+    mfcc_7_mean
+    mfcc_7_std
+    mfcc_8_mean
+    mfcc_8_std
+    mfcc_9_mean
+    mfcc_9_std
+    mfcc_10_mean
+    mfcc_10_std
+    mfcc_11_mean
+    mfcc_11_std
+    mfcc_12_mean
+    mfcc_12_std
+    mfcc_13_mean
+    mfcc_13_std
+    mfcc_14_mean
+    mfcc_14_std
+    mfcc_15_mean
+    mfcc_15_std
+    mfcc_16_mean
+    mfcc_16_std
+    mfcc_17_mean
+    mfcc_17_std
+    mfcc_18_mean
+    mfcc_18_std
+    mfcc_19_mean
+    mfcc_19_std
+    mfcc_20_mean
+    mfcc_20_std
+    mfcc_21_mean
+    mfcc_21_std
+    mfcc_22_mean
+    mfcc_22_std
+    mfcc_23_mean
+    mfcc_23_std
+    mfcc_24_mean
+    mfcc_24_std
+    mfcc_25_mean
+    mfcc_25_std
+    mfcc_26_mean
+    mfcc_26_std
+    mfcc_27_mean
+    mfcc_27_std
+    mfcc_28_mean
+    mfcc_28_std
+    mfcc_29_mean
+    mfcc_29_std
+    mfcc_30_mean
+    mfcc_30_std
+    mfcc_31_mean
+    mfcc_31_std
+    mfcc_32_mean
+    mfcc_32_std
+    mfcc_33_mean
+    mfcc_33_std
+    mfcc_34_mean
+    mfcc_34_std
+    mfcc_35_mean
+    mfcc_35_std
+    mfcc_36_mean
+    mfcc_36_std
+    mfcc_37_mean
+    mfcc_37_std
+    mfcc_38_mean
+    mfcc_38_std
+    mfcc_39_mean
+    mfcc_39_std
+    mfcc_40_mean
+    mfcc_40_std
+    pitch_mean
+    pitch_std
+    rms_mean
+    rms_std
+    zcr_mean
+    spec_centroid_mean
+    speaking_rate
+    jitter
+    rms_slope
+    rms_gradient
+    speaking_rate_change
+  B_old_keyword  →  96 features
+    mfcc_1_mean
+    mfcc_1_std
+    mfcc_2_mean
+    mfcc_2_std
+    mfcc_3_mean
+    mfcc_3_std
+    mfcc_4_mean
+    mfcc_4_std
+    mfcc_5_mean
+    mfcc_5_std
+    mfcc_6_mean
+    mfcc_6_std
+    mfcc_7_mean
+    mfcc_7_std
+    mfcc_8_mean
+    mfcc_8_std
+    mfcc_9_mean
+    mfcc_9_std
+    mfcc_10_mean
+    mfcc_10_std
+    mfcc_11_mean
+    mfcc_11_std
+    mfcc_12_mean
+    mfcc_12_std
+    mfcc_13_mean
+    mfcc_13_std
+    mfcc_14_mean
+    mfcc_14_std
+    mfcc_15_mean
+    mfcc_15_std
+    mfcc_16_mean
+    mfcc_16_std
+    mfcc_17_mean
+    mfcc_17_std
+    mfcc_18_mean
+    mfcc_18_std
+    mfcc_19_mean
+    mfcc_19_std
+    mfcc_20_mean
+    mfcc_20_std
+    mfcc_21_mean
+    mfcc_21_std
+    mfcc_22_mean
+    mfcc_22_std
+    mfcc_23_mean
+    mfcc_23_std
+    mfcc_24_mean
+    mfcc_24_std
+    mfcc_25_mean
+    mfcc_25_std
+    mfcc_26_mean
+    mfcc_26_std
+    mfcc_27_mean
+    mfcc_27_std
+    mfcc_28_mean
+    mfcc_28_std
+    mfcc_29_mean
+    mfcc_29_std
+    mfcc_30_mean
+    mfcc_30_std
+    mfcc_31_mean
+    mfcc_31_std
+    mfcc_32_mean
+    mfcc_32_std
+    mfcc_33_mean
+    mfcc_33_std
+    mfcc_34_mean
+    mfcc_34_std
+    mfcc_35_mean
+    mfcc_35_std
+    mfcc_36_mean
+    mfcc_36_std
+    mfcc_37_mean
+    mfcc_37_std
+    mfcc_38_mean
+    mfcc_38_std
+    mfcc_39_mean
+    mfcc_39_std
+    mfcc_40_mean
+    mfcc_40_std
+    pitch_mean
+    pitch_std
+    rms_mean
+    rms_std
+    zcr_mean
+    spec_centroid_mean
+    speaking_rate
+    jitter
+    rms_slope
+    rms_gradient
+    speaking_rate_change
+    asr_quality
+    keyword_count_original
+    word_count
+    repetition_rate
+    sentiment_polarity
+  C_base  →  96 features
+    mfcc_1_mean
+    mfcc_1_std
+    mfcc_2_mean
+    mfcc_2_std
+    mfcc_3_mean
+    mfcc_3_std
+    mfcc_4_mean
+    mfcc_4_std
+    mfcc_5_mean
+    mfcc_5_std
+    mfcc_6_mean
+    mfcc_6_std
+    mfcc_7_mean
+    mfcc_7_std
+    mfcc_8_mean
+    mfcc_8_std
+    mfcc_9_mean
+    mfcc_9_std
+    mfcc_10_mean
+    mfcc_10_std
+    mfcc_11_mean
+    mfcc_11_std
+    mfcc_12_mean
+    mfcc_12_std
+    mfcc_13_mean
+    mfcc_13_std
+    mfcc_14_mean
+    mfcc_14_std
+    mfcc_15_mean
+    mfcc_15_std
+    mfcc_16_mean
+    mfcc_16_std
+    mfcc_17_mean
+    mfcc_17_std
+    mfcc_18_mean
+    mfcc_18_std
+    mfcc_19_mean
+    mfcc_19_std
+    mfcc_20_mean
+    mfcc_20_std
+    mfcc_21_mean
+    mfcc_21_std
+    mfcc_22_mean
+    mfcc_22_std
+    mfcc_23_mean
+    mfcc_23_std
+    mfcc_24_mean
+    mfcc_24_std
+    mfcc_25_mean
+    mfcc_25_std
+    mfcc_26_mean
+    mfcc_26_std
+    mfcc_27_mean
+    mfcc_27_std
+    mfcc_28_mean
+    mfcc_28_std
+    mfcc_29_mean
+    mfcc_29_std
+    mfcc_30_mean
+    mfcc_30_std
+    mfcc_31_mean
+    mfcc_31_std
+    mfcc_32_mean
+    mfcc_32_std
+    mfcc_33_mean
+    mfcc_33_std
+    mfcc_34_mean
+    mfcc_34_std
+    mfcc_35_mean
+    mfcc_35_std
+    mfcc_36_mean
+    mfcc_36_std
+    mfcc_37_mean
+    mfcc_37_std
+    mfcc_38_mean
+    mfcc_38_std
+    mfcc_39_mean
+    mfcc_39_std
+    mfcc_40_mean
+    mfcc_40_std
+    pitch_mean
+    pitch_std
+    rms_mean
+    rms_std
+    zcr_mean
+    spec_centroid_mean
+    speaking_rate
+    jitter
+    rms_slope
+    rms_gradient
+    speaking_rate_change
+    asr_quality
+    keyword_count
+    word_count
+    repetition_rate
+    sentiment_polarity
+  D_context  →  112 features
+    mfcc_1_mean
+    mfcc_1_std
+    mfcc_2_mean
+    mfcc_2_std
+    mfcc_3_mean
+    mfcc_3_std
+    mfcc_4_mean
+    mfcc_4_std
+    mfcc_5_mean
+    mfcc_5_std
+    mfcc_6_mean
+    mfcc_6_std
+    mfcc_7_mean
+    mfcc_7_std
+    mfcc_8_mean
+    mfcc_8_std
+    mfcc_9_mean
+    mfcc_9_std
+    mfcc_10_mean
+    mfcc_10_std
+    mfcc_11_mean
+    mfcc_11_std
+    mfcc_12_mean
+    mfcc_12_std
+    mfcc_13_mean
+    mfcc_13_std
+    mfcc_14_mean
+    mfcc_14_std
+    mfcc_15_mean
+    mfcc_15_std
+    mfcc_16_mean
+    mfcc_16_std
+    mfcc_17_mean
+    mfcc_17_std
+    mfcc_18_mean
+    mfcc_18_std
+    mfcc_19_mean
+    mfcc_19_std
+    mfcc_20_mean
+    mfcc_20_std
+    mfcc_21_mean
+    mfcc_21_std
+    mfcc_22_mean
+    mfcc_22_std
+    mfcc_23_mean
+    mfcc_23_std
+    mfcc_24_mean
+    mfcc_24_std
+    mfcc_25_mean
+    mfcc_25_std
+    mfcc_26_mean
+    mfcc_26_std
+    mfcc_27_mean
+    mfcc_27_std
+    mfcc_28_mean
+    mfcc_28_std
+    mfcc_29_mean
+    mfcc_29_std
+    mfcc_30_mean
+    mfcc_30_std
+    mfcc_31_mean
+    mfcc_31_std
+    mfcc_32_mean
+    mfcc_32_std
+    mfcc_33_mean
+    mfcc_33_std
+    mfcc_34_mean
+    mfcc_34_std
+    mfcc_35_mean
+    mfcc_35_std
+    mfcc_36_mean
+    mfcc_36_std
+    mfcc_37_mean
+    mfcc_37_std
+    mfcc_38_mean
+    mfcc_38_std
+    mfcc_39_mean
+    mfcc_39_std
+    mfcc_40_mean
+    mfcc_40_std
+    pitch_mean
+    pitch_std
+    rms_mean
+    rms_std
+    zcr_mean
+    spec_centroid_mean
+    speaking_rate
+    jitter
+    rms_slope
+    rms_gradient
+    speaking_rate_change
+    asr_quality
+    keyword_count
+    word_count
+    repetition_rate
+    sentiment_polarity
+    sin_context_score
+    sin_danger_count
+    sin_help_request_count
+    sin_high_risk_phrase_count
+    sin_immediacy_count
+    sin_location_context_count
+    sin_person_at_risk_count
+    sin_safety_state_count
+    tam_context_score
+    tam_danger_count
+    tam_help_request_count
+    tam_high_risk_phrase_count
+    tam_immediacy_count
+    tam_location_context_count
+    tam_person_at_risk_count
+    tam_safety_state_count
+  E_context_gate  →  112 features
+    mfcc_1_mean
+    mfcc_1_std
+    mfcc_2_mean
+    mfcc_2_std
+    mfcc_3_mean
+    mfcc_3_std
+    mfcc_4_mean
+    mfcc_4_std
+    mfcc_5_mean
+    mfcc_5_std
+    mfcc_6_mean
+    mfcc_6_std
+    mfcc_7_mean
+    mfcc_7_std
+    mfcc_8_mean
+    mfcc_8_std
+    mfcc_9_mean
+    mfcc_9_std
+    mfcc_10_mean
+    mfcc_10_std
+    mfcc_11_mean
+    mfcc_11_std
+    mfcc_12_mean
+    mfcc_12_std
+    mfcc_13_mean
+    mfcc_13_std
+    mfcc_14_mean
+    mfcc_14_std
+    mfcc_15_mean
+    mfcc_15_std
+    mfcc_16_mean
+    mfcc_16_std
+    mfcc_17_mean
+    mfcc_17_std
+    mfcc_18_mean
+    mfcc_18_std
+    mfcc_19_mean
+    mfcc_19_std
+    mfcc_20_mean
+    mfcc_20_std
+    mfcc_21_mean
+    mfcc_21_std
+    mfcc_22_mean
+    mfcc_22_std
+    mfcc_23_mean
+    mfcc_23_std
+    mfcc_24_mean
+    mfcc_24_std
+    mfcc_25_mean
+    mfcc_25_std
+    mfcc_26_mean
+    mfcc_26_std
+    mfcc_27_mean
+    mfcc_27_std
+    mfcc_28_mean
+    mfcc_28_std
+    mfcc_29_mean
+    mfcc_29_std
+    mfcc_30_mean
+    mfcc_30_std
+    mfcc_31_mean
+    mfcc_31_std
+    mfcc_32_mean
+    mfcc_32_std
+    mfcc_33_mean
+    mfcc_33_std
+    mfcc_34_mean
+    mfcc_34_std
+    mfcc_35_mean
+    mfcc_35_std
+    mfcc_36_mean
+    mfcc_36_std
+    mfcc_37_mean
+    mfcc_37_std
+    mfcc_38_mean
+    mfcc_38_std
+    mfcc_39_mean
+    mfcc_39_std
+    mfcc_40_mean
+    mfcc_40_std
+    pitch_mean
+    pitch_std
+    rms_mean
+    rms_std
+    zcr_mean
+    spec_centroid_mean
+    speaking_rate
+    jitter
+    rms_slope
+    rms_gradient
+    speaking_rate_change
+    asr_quality
+    keyword_count
+    word_count
+    repetition_rate
+    sentiment_polarity
+    sin_context_score
+    sin_danger_count
+    sin_help_request_count
+    sin_high_risk_phrase_count
+    sin_immediacy_count
+    sin_location_context_count
+    sin_person_at_risk_count
+    sin_safety_state_count
+    tam_context_score
+    tam_danger_count
+    tam_help_request_count
+    tam_high_risk_phrase_count
+    tam_immediacy_count
+    tam_location_context_count
+    tam_person_at_risk_count
+    tam_safety_state_count
+
+── Cross-validation ──
+  StratifiedKFold  n_splits=5  shuffle=True  random_state=42
+
+── SMOTE ──
+  Method     : SMOTE  random_state=42
+  Placement  : inside each fold, fit on train split only, after StandardScaler
+
+── Random Forest ──
+  n_estimators: 200
+  min_samples_leaf: 2
+  class_weight: balanced
+  random_state: 42
+  n_jobs: -1
+
+── Scaler ──
+  StandardScaler — fit on train split only; applied before SMOTE inside pipeline
+
+── ASR gate (Condition E only) ──
+  asr_quality     < 0.3  → zero all text + context features
+  repetition_rate > 0.8 → zero all text + context features
+  Calls suppressed: 10
+
+── ASR models ──
+  Sinhala : Lingalingeswaran/whisper-small-sinhala_v3  (oracle-language routing)
+  Other   : openai/whisper-base
+
+── asr_quality provenance ──
+  Computed by asr_quality_score() in 02_extract_features.py
+  Input: transcript text only. Logic: fraction of alpha chars that are
+  NOT Arabic (U+0600-U+06FF) or Cyrillic (U+0400-U+04FF).
+  No label information used. Present in original 96-col pre-context CSV.
+  Included in B, C, D, E to match that baseline; excluded from A (acoustic-only).
+
+── Keyword versions ──
+  keyword_count_original : 31-term list (commit 762041e)
+    English + Sinhala romanised + 5 Tamil script words
+    Applied with same asr_quality confidence-weighting as current pipeline
+    Used in condition B only (pre-context baseline)
+  keyword_count          : expanded TF-IDF list (~70 terms)
+    English + Sinhala script + expanded Tamil (TF-IDF enriched)
+    Used in conditions C, D, E
+  Computed by: scripts/add_original_keywords.py
+
+── Context feature rule version ──
+  File   : scripts/context_features.py
+  8 features per language (sin_* / tam_*), 16 total
+  Word lists: TF-IDF candidates (all Sinhala/Tamil calls) + manual audit
+  context_score = min(danger,1)+min(immediacy,1)+min(help,1)
+                  +min(phrase,1)+min(person,1) - min(safety,1)  [max=5]
+
+── Validation checks (all must pass before run proceeds) ──
+  urgency_label not in any feature list              : PASS
+  metadata cols not in any feature list              : PASS
+  all feature cols present in features.csv           : PASS
+  no duplicate cols within any condition             : PASS
+  all conditions use identical row ordering          : PASS (same df)
+  all conditions use identical fold indices          : PASS (same SKF object)
+  SMOTE fit on train split only                      : PASS (ImbPipeline)
+  scaler fit on train split only                     : PASS (ImbPipeline)
+======================================================================

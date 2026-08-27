@@ -1,0 +1,4 @@
+,Macro F1 (mean),Macro F1 (std),Accuracy (mean)
+Random Forest,0.38,0.092,0.415
+SVM (RBF),0.351,0.089,0.369
+Logistic Regression,0.41,0.164,0.431

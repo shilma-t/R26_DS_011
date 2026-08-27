@@ -1,0 +1,278 @@
+{
+  "title": "CANDIDATE PIPELINE FREEZE MANIFEST",
+  "status": "DEVELOPMENT CANDIDATE — not a validated final result",
+  "frozen_at": "2026-08-18T18:27:24",
+  "methodological_caveat": "fire_smoke_match was selected after inspecting development errors on the same simulated corpus used for cross-validation. The macro-F1 of 0.621 is a development estimate and may be optimistic. External evaluation on independent DMC recordings is required before any final performance claim.",
+  "data": {
+    "labels_file": "data/labels_frozen_20260817.csv",
+    "labels_sha256": "c7aa965d469ad5ab8935094bd8511daa6eef6b1d379e16c83c69f4aa084ddb4a",
+    "labels_frozen_date": "2026-08-17",
+    "features_file": "data/features.csv",
+    "features_sha256": "087a6bda1b5041b2a063e8fc1008d669577a0c819c1d9ab3cbdd0c181ad007e7",
+    "fold_assignments": "reports/pp2/fold_assignments.csv",
+    "fold_assignments_sha256": "93a9f45d185924dd00ecf78b3999aa92c56b4d75534e25b3487034a881c2b6ef",
+    "n_calls": 267,
+    "class_distribution": {
+      "High": 130,
+      "Medium": 82,
+      "Low": 55
+    },
+    "languages": [
+      "sinhala",
+      "tamil",
+      "singlish",
+      "tanglish",
+      "english"
+    ]
+  },
+  "asr": {
+    "sinhala_model": "Lingalingeswaran/whisper-small-sinhala_v3",
+    "other_model": "openai/whisper-base",
+    "routing": "oracle-language label used to route each call",
+    "asr_quality_metric": "Fraction of alpha characters that are not Arabic (U+0600-U+06FF) or Cyrillic (U+0400-U+04FF). Computed from transcript text only."
+  },
+  "feature_engineering": {
+    "n_features_final": 111,
+    "acoustic_features": [
+      "mfcc_1_mean",
+      "mfcc_1_std",
+      "mfcc_2_mean",
+      "mfcc_2_std",
+      "mfcc_3_mean",
+      "mfcc_3_std",
+      "mfcc_4_mean",
+      "mfcc_4_std",
+      "mfcc_5_mean",
+      "mfcc_5_std",
+      "mfcc_6_mean",
+      "mfcc_6_std",
+      "mfcc_7_mean",
+      "mfcc_7_std",
+      "mfcc_8_mean",
+      "mfcc_8_std",
+      "mfcc_9_mean",
+      "mfcc_9_std",
+      "mfcc_10_mean",
+      "mfcc_10_std",
+      "mfcc_11_mean",
+      "mfcc_11_std",
+      "mfcc_12_mean",
+      "mfcc_12_std",
+      "mfcc_13_mean",
+      "mfcc_13_std",
+      "mfcc_14_mean",
+      "mfcc_14_std",
+      "mfcc_15_mean",
+      "mfcc_15_std",
+      "mfcc_16_mean",
+      "mfcc_16_std",
+      "mfcc_17_mean",
+      "mfcc_17_std",
+      "mfcc_18_mean",
+      "mfcc_18_std",
+      "mfcc_19_mean",
+      "mfcc_19_std",
+      "mfcc_20_mean",
+      "mfcc_20_std",
+      "mfcc_21_mean",
+      "mfcc_21_std",
+      "mfcc_22_mean",
+      "mfcc_22_std",
+      "mfcc_23_mean",
+      "mfcc_23_std",
+      "mfcc_24_mean",
+      "mfcc_24_std",
+      "mfcc_25_mean",
+      "mfcc_25_std",
+      "mfcc_26_mean",
+      "mfcc_26_std",
+      "mfcc_27_mean",
+      "mfcc_27_std",
+      "mfcc_28_mean",
+      "mfcc_28_std",
+      "mfcc_29_mean",
+      "mfcc_29_std",
+      "mfcc_30_mean",
+      "mfcc_30_std",
+      "mfcc_31_mean",
+      "mfcc_31_std",
+      "mfcc_32_mean",
+      "mfcc_32_std",
+      "mfcc_33_mean",
+      "mfcc_33_std",
+      "mfcc_34_mean",
+      "mfcc_34_std",
+      "mfcc_35_mean",
+      "mfcc_35_std",
+      "mfcc_36_mean",
+      "mfcc_36_std",
+      "mfcc_37_mean",
+      "mfcc_37_std",
+      "mfcc_38_mean",
+      "mfcc_38_std",
+      "mfcc_39_mean",
+      "mfcc_39_std",
+      "mfcc_40_mean",
+      "mfcc_40_std",
+      "pitch_mean",
+      "pitch_std",
+      "rms_mean",
+      "rms_std",
+      "zcr_mean",
+      "spec_centroid_mean",
+      "speaking_rate",
+      "jitter",
+      "rms_slope",
+      "rms_gradient",
+      "speaking_rate_change"
+    ],
+    "text_features": [
+      "asr_quality",
+      "keyword_count",
+      "word_count",
+      "repetition_rate",
+      "sentiment_polarity"
+    ],
+    "context_features_retained": [
+      "sin_context_score",
+      "sin_danger_count",
+      "sin_help_request_count",
+      "sin_high_risk_phrase_count",
+      "sin_location_context_count",
+      "sin_person_at_risk_count",
+      "sin_safety_state_count",
+      "tam_context_score",
+      "tam_danger_count",
+      "tam_help_request_count",
+      "tam_high_risk_phrase_count",
+      "tam_location_context_count",
+      "tam_person_at_risk_count",
+      "tam_safety_state_count"
+    ],
+    "context_features_removed": {
+      "columns": [
+        "sin_immediacy_count",
+        "tam_immediacy_count"
+      ],
+      "reason": "Immediacy features (sin_immediacy_count, tam_immediacy_count) were found to fire more in Medium and Low calls than High, actively harming Medium recall. Removing them improved macro-F1 from 0.604 to 0.609 and Medium recall from 0.439 to 0.463."
+    },
+    "fire_smoke_match": {
+      "definition": "Binary: 1 if any fire/smoke keyword matches transcript (case-insensitive substring), else 0",
+      "keywords": [
+        "fire",
+        "smoke",
+        "burning",
+        "flames",
+        "gas",
+        "ගිනිගන්නව",
+        "ගිනිඅරගෙන",
+        "ගින්නක්",
+        "ගිනි",
+        "දුමක්",
+        "දුම",
+        "தீ",
+        "புகை",
+        "gini"
+      ],
+      "languages_covered": [
+        "english",
+        "sinhala_script",
+        "tamil_script",
+        "romanised_sinhala"
+      ],
+      "fires_in_n_calls": 29,
+      "fires_by_class": {
+        "High": 20,
+        "Medium": 7,
+        "Low": 2
+      },
+      "observed_high_precision": 0.69,
+      "selection_basis": "Selected after keyword concept audit showed FIRE/SMOKE has the strongest High-class association of any concept group. DEVELOPMENT SELECTION — not pre-registered."
+    },
+    "keyword_count": {
+      "list": "expanded TF-IDF enriched list (~70 terms)",
+      "note": "TF-IDF candidates selected from full corpus before folds — exploratory, not fold-safe"
+    },
+    "context_feature_version": "scripts/pipeline/context_features.py",
+    "context_score_formula": "min(danger,1)+min(immediacy,1)+min(help,1)+min(phrase,1)+min(person,1)-min(safety,1)  [max=5] — NOTE: immediacy component still in score formula; only the raw count column was removed from the feature matrix."
+  },
+  "ml_pipeline": {
+    "cross_validation": "StratifiedKFold  n_splits=5  shuffle=True  random_state=42",
+    "scaler": "StandardScaler — fit on train split only",
+    "smote": "SMOTE(random_state=42) — fit on train split only, after scaler, inside ImbPipeline",
+    "classifier": "RandomForestClassifier",
+    "rf_params": {
+      "n_estimators": 200,
+      "min_samples_leaf": 2,
+      "class_weight": "balanced",
+      "random_state": 42,
+      "n_jobs": -1
+    }
+  },
+  "development_results": {
+    "A_acoustic_91": {
+      "macro_f1": 0.5919,
+      "High_recall": 0.7615,
+      "Medium_recall": 0.439,
+      "Low_recall": 0.6
+    },
+    "B_old_keyword_96": {
+      "macro_f1": 0.6081,
+      "High_recall": 0.7538,
+      "Medium_recall": 0.439,
+      "Low_recall": 0.6545
+    },
+    "C_base_96": {
+      "macro_f1": 0.5934,
+      "High_recall": 0.7615,
+      "Medium_recall": 0.439,
+      "Low_recall": 0.6
+    },
+    "D_context_112": {
+      "macro_f1": 0.6039,
+      "High_recall": 0.7462,
+      "Medium_recall": 0.439,
+      "Low_recall": 0.6545
+    },
+    "E_context_gate_112": {
+      "macro_f1": 0.6047,
+      "High_recall": 0.7385,
+      "Medium_recall": 0.4512,
+      "Low_recall": 0.6545
+    },
+    "D_no_immediacy_110": {
+      "macro_f1": 0.6091,
+      "High_recall": 0.7538,
+      "Medium_recall": 0.4634,
+      "Low_recall": 0.6364,
+      "note": "Condition D minus sin_immediacy_count and tam_immediacy_count"
+    },
+    "D_candidate_111": {
+      "macro_f1": 0.6208,
+      "High_recall": 0.7923,
+      "Medium_recall": 0.4634,
+      "Low_recall": 0.6364,
+      "note": "D_no_immediacy + fire_smoke_match. DEVELOPMENT ESTIMATE — may be optimistic."
+    }
+  },
+  "comparator_note": "Medium recall comparisons in the paper must state the comparator explicitly. D_candidate vs D_full: Medium recall 0.463 vs 0.439 (+0.024). D_candidate vs D_no_imm: Medium recall 0.463 vs 0.463 (no change — the fire_smoke feature did NOT improve Medium recall). The Medium recall improvement is attributable to immediacy removal, not fire_smoke.",
+  "frozen_outputs": {
+    "ablation_summary": "reports/pp2/ablation_context_summary.csv",
+    "ablation_folds": "reports/pp2/ablation_context_folds.csv",
+    "ablation_manifest": "reports/pp2/ablation_manifest.txt",
+    "fold_assignments": "reports/pp2/fold_assignments.csv",
+    "medium_error_analysis": "reports/pp2/medium_error_analysis.csv",
+    "context_column_audit": "reports/pp2/context_column_audit.csv",
+    "keyword_concept_audit": "reports/pp2/keyword_concept_audit.csv",
+    "acoustic_group_ablation": "reports/pp2/acoustic_group_ablation.csv",
+    "immediacy_removal_test": "reports/pp2/immediacy_removal_test.csv",
+    "fire_smoke_test": "reports/pp2/fire_smoke_test.csv"
+  },
+  "next_steps": [
+    "1. Evaluate frozen candidate pipeline on DMC recordings WITHOUT any tuning",
+    "2. Report simulated and DMC results in separate tables",
+    "3. Record whether DMC recordings contain enough genuine Medium cases for three-class evaluation",
+    "4. Do NOT add more features, keywords, or classifier changes before DMC evaluation",
+    "5. Begin writing Methods and Results sections using frozen development results"
+  ]
+}

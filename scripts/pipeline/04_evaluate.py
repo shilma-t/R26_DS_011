@@ -1,8 +1,4 @@
-"""
-04_evaluate.py
-Generates evaluation plots: confusion matrix, per-class F1, feature importance.
-Outputs saved to reports/.
-"""
+
 
 import os
 import joblib
@@ -17,9 +13,10 @@ from sklearn.metrics import (
 )
 from sklearn.model_selection import StratifiedKFold, cross_val_predict
 
-FEATURES_CSV = os.path.join("..", "features.csv")
-MODELS_DIR   = os.path.join("..", "models")
-REPORTS_DIR  = os.path.join("..", "reports")
+_ROOT        = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+FEATURES_CSV = os.path.join(_ROOT, "data", "features.csv")
+MODELS_DIR   = os.path.join(_ROOT, "models")
+REPORTS_DIR  = os.path.join(_ROOT, "reports", "pp1")
 NON_FEATURE_COLS = {"filename", "urgency_label", "language", "transcript"}
 
 
@@ -66,7 +63,7 @@ def main():
     with open(os.path.join(REPORTS_DIR, "classification_report.txt"), "w") as f:
         f.write(report)
 
-    # Confusion matrix
+    # Confusion matrix — counts
     cm = confusion_matrix(y, y_pred_labels, labels=labels)
     fig, ax = plt.subplots(figsize=(6, 5))
     ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=labels).plot(
@@ -75,6 +72,21 @@ def main():
     ax.set_title("Urgency Classification — Confusion Matrix (5-fold CV)")
     plt.tight_layout()
     plt.savefig(os.path.join(REPORTS_DIR, "confusion_matrix.png"), dpi=150)
+    plt.close()
+
+    # Confusion matrix — percentages (row-normalised)
+    cm_norm = cm.astype(float) / cm.sum(axis=1, keepdims=True)
+    fig, ax = plt.subplots(figsize=(6, 5))
+    ConfusionMatrixDisplay(confusion_matrix=cm_norm, display_labels=labels).plot(
+        ax=ax, colorbar=False, cmap="Blues"
+    )
+    # Format cells as percentages
+    for text in ax.texts:
+        val = float(text.get_text())
+        text.set_text(f"{val*100:.1f}%")
+    ax.set_title("Urgency Classification — Confusion Matrix % (5-fold CV)")
+    plt.tight_layout()
+    plt.savefig(os.path.join(REPORTS_DIR, "confusion_matrix_pct.png"), dpi=150)
     plt.close()
 
     # Feature importance — top 20

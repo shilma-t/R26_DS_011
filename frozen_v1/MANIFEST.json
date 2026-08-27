@@ -1,0 +1,77 @@
+{
+  "created": "2026-08-25T15:35:32",
+  "updated": "2026-08-25T15:35:32",
+  "note": "v1 baseline artifacts. Do not modify. v2 uses new filenames.",
+  "artifacts": {
+    "data/features.csv": {
+      "sha256": "087a6bda1b5041b2a063e8fc1008d669577a0c819c1d9ab3cbdd0c181ad007e7",
+      "bytes": 522744,
+      "frozen_as": "data__features.csv"
+    },
+    "data/labels_frozen_20260817.csv": {
+      "sha256": "c7aa965d469ad5ab8935094bd8511daa6eef6b1d379e16c83c69f4aa084ddb4a",
+      "bytes": 18535,
+      "frozen_as": "data__labels_frozen_20260817.csv"
+    },
+    "data/dmc_metadata.csv": {
+      "sha256": "15d7d5a07dac5e8879d6712c0168d9e7c3f280ecaa79d751da9d99888b671dd9",
+      "bytes": 7450,
+      "frozen_as": "data__dmc_metadata.csv"
+    },
+    "reports/pp2/candidate_pipeline_freeze.txt": {
+      "sha256": "28f1692f8a8e6a2d568e4f7cb9c55b983f630f90976ff9504b6878989210abda",
+      "bytes": 3792,
+      "frozen_as": "reports__pp2__candidate_pipeline_freeze.txt"
+    },
+    "reports/pp2/ablation_manifest.txt": {
+      "sha256": "91b5d765945bff95ea8ce86a0d024d7935b51a566a4884cfdf42e50bddb47d20",
+      "bytes": 14950,
+      "frozen_as": "reports__pp2__ablation_manifest.txt"
+    },
+    "reports/pp2/dmc_diarization_manifest.csv": {
+      "sha256": "e1ea17f5f3af581d6056159a65c93ac1261dcc6f0318a958abc2138cf7cbf468",
+      "bytes": 272453,
+      "frozen_as": "reports__pp2__dmc_diarization_manifest.csv"
+    },
+    "reports/pp2/dmc_verify_worksheet.xlsx": {
+      "sha256": "e3693af855b64040377c0f2f41916aba88fcd45e745338e0876d26efd8724e59",
+      "bytes": 21428,
+      "frozen_as": "reports__pp2__dmc_verify_worksheet.xlsx"
+    },
+    "reports/pp2/dmc_caller_manifest.csv": {
+      "sha256": "7a3fe0138627ce4a5c6509d4aee133c4cfb0cb57969da1a73b271cf5ee3e6b02",
+      "bytes": 9326,
+      "frozen_as": "reports__pp2__dmc_caller_manifest.csv"
+    },
+    "reports/pp2/dmc_caller_turns.csv": {
+      "sha256": "3a5dcc75f36f28114a3d2f0bab5a4136f1613251fe05ad7c46f5f6e641a7fdd3",
+      "bytes": 25631,
+      "frozen_as": "reports__pp2__dmc_caller_turns.csv"
+    },
+    "scripts/pipeline/02_extract_features.py": {
+      "sha256": "832e3e735049ca3316cbe492a17c609cc60435b34a0c96ade7ba6eec2d3fc6f6",
+      "bytes": 13072,
+      "frozen_as": "scripts__pipeline__02_extract_features.py"
+    },
+    "scripts/pipeline/context_features.py": {
+      "sha256": "1c9cc9e91206bf210640094deb0649f9c52dae6fc789356d19248ab4f849ead8",
+      "bytes": 16488,
+      "frozen_as": "scripts__pipeline__context_features.py"
+    },
+    "scripts/pipeline/evaluate_dmc.py": {
+      "sha256": "3a8133427315a69cdef9dc652d78d68e748c56458f2dd019ff87f27a8392f963",
+      "bytes": 17981,
+      "frozen_as": "scripts__pipeline__evaluate_dmc.py"
+    },
+    "scripts/pipeline/caller_turns.py": {
+      "sha256": "67178920b32abcbb4c70a1eb133e5a20ac837dbf4d9c3b124b6484e982ad2982",
+      "bytes": 6050,
+      "frozen_as": "scripts__pipeline__caller_turns.py"
+    },
+    "scripts/pipeline/extract_caller_audio.py": {
+      "sha256": "b2d1d44d62b6c09d440cd38d7eba61173c51753dd4cb6de4631d0a2f1ed95123",
+      "bytes": 7781,
+      "frozen_as": "scripts__pipeline__extract_caller_audio.py"
+    }
+  }
+}

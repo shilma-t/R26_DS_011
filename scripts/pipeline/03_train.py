@@ -16,14 +16,54 @@ from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import SMOTE
 from imblearn.pipeline import Pipeline as ImbPipeline
 
-FEATURES_CSV = os.path.join("..", "features.csv")
-MODELS_DIR   = os.path.join("..", "models")
+_ROOT        = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+FEATURES_CSV = os.path.join(_ROOT, "data", "features.csv")
+MODELS_DIR   = os.path.join(_ROOT, "models")
 
 NON_FEATURE_COLS = {"filename", "urgency_label", "language", "transcript"}
 
+# Text feature columns suppressed by the ASR gate
+TEXT_FEATURE_COLS = [
+    "keyword_count", "word_count", "repetition_rate", "sentiment_polarity",
+]
+CONTEXT_PREFIXES = ("sin_", "tam_")
 
-def load_data(path: str):
+ASR_GATE_QUALITY_THRESHOLD    = 0.3   # asr_quality below this → suppress
+ASR_GATE_REPETITION_THRESHOLD = 0.8   # repetition_rate above this → suppress
+
+
+def apply_asr_gate(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Zero out all text and context features for rows where the transcript
+    is obviously unusable: empty, low quality, or highly repetitive.
+    Acoustic features are never touched.
+    """
+    df = df.copy()
+
+    # Identify all text + context columns present in the dataframe
+    ctx_cols  = [c for c in df.columns if c.startswith(CONTEXT_PREFIXES)]
+    text_cols = [c for c in TEXT_FEATURE_COLS if c in df.columns]
+    suppress_cols = text_cols + ctx_cols
+
+    gate_mask = (
+        df["transcript"].isna() |
+        (df["transcript"].astype(str).str.strip() == "") |
+        (df.get("asr_quality",    pd.Series(1.0, index=df.index)) < ASR_GATE_QUALITY_THRESHOLD) |
+        (df.get("repetition_rate", pd.Series(0.0, index=df.index)) > ASR_GATE_REPETITION_THRESHOLD)
+    )
+
+    suppressed = gate_mask.sum()
+    print(f"  ASR gate: {suppressed}/{len(df)} calls suppressed "
+          f"(text features zeroed, acoustics kept)")
+
+    df.loc[gate_mask, suppress_cols] = 0.0
+    return df
+
+
+def load_data(path: str, use_asr_gate: bool = True):
     df = pd.read_csv(path)
+    if use_asr_gate:
+        df = apply_asr_gate(df)
     feature_cols = [c for c in df.columns if c not in NON_FEATURE_COLS]
     X = df[feature_cols].fillna(0).values
     y = df["urgency_label"].values
