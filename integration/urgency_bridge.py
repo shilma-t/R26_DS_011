@@ -88,9 +88,23 @@ FEATURE_COLS = ACOUSTIC + TEXT + CONTEXT + ["fire_smoke_match"]
 
 SEVERITY = {"Low": 0, "Medium": 1, "High": 2}
 
+# Late-fusion pair: text-only (Condition C - word_count dropped, found to be a
+# near-noise, heavily domain-shifted feature causing a Medium-class collapse
+# on real DMC calls) + acoustic-only, combined 0.5/0.5. Validated on the
+# flood/fire-scoped DMC subset (n=11) at 67.3% accuracy / 65.7% High recall,
+# vs the single fused FEATURE_COLS model's 47.3%/31.4% on the same subset.
+# See reports/pp2_finalized_reports/SUMMARY.md.
+TEXT_ONLY_COLS = ["asr_quality", "keyword_count", "repetition_rate",
+                  "sentiment_polarity"] + CONTEXT + ["fire_smoke_match"]
+ACOUSTIC_ONLY_COLS = ACOUSTIC
+TEXT_MODEL_PATH = os.path.join(URGENCY_ROOT, "models", "urgency_text_only_v1.joblib")
+ACOUSTIC_MODEL_PATH = os.path.join(URGENCY_ROOT, "models", "urgency_acoustic_only_v1.joblib")
+
 _lock = threading.Lock()
 _model = None
 _labels = None
+_text_model = None
+_acoustic_model = None
 _frozen = None
 _sessions: dict[str, list[dict]] = {}
 _pending: dict[str, list[threading.Thread]] = {}
@@ -166,6 +180,59 @@ def _ensure_model():
     return _model, _labels
 
 
+def _build_single_model(feature_cols, cache_path):
+    """Same training recipe as _build_model(), for a smaller feature subset."""
+    import joblib
+    import pandas as pd
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.preprocessing import LabelEncoder, StandardScaler
+    from imblearn.over_sampling import SMOTE
+    from imblearn.pipeline import Pipeline as ImbPipeline
+
+    if os.path.exists(cache_path):
+        payload = joblib.load(cache_path)
+        return payload["model"], payload["classes"]
+
+    if not os.path.exists(FEATURES_CSV):
+        raise SystemExit(f"Training features not found: {FEATURES_CSV}")
+
+    sim = pd.read_csv(FEATURES_CSV)
+    if "fire_smoke_match" not in sim.columns:
+        sim["fire_smoke_match"] = sim["transcript"].map(fire_smoke_match)
+
+    missing = [c for c in feature_cols if c not in sim.columns]
+    if missing:
+        raise SystemExit(f"features.csv missing columns: {missing}")
+
+    sim = sim.dropna(subset=["urgency_label"])
+    encoder = LabelEncoder().fit(["High", "Low", "Medium"])
+
+    model = ImbPipeline([
+        ("scaler", StandardScaler()),
+        ("smote", SMOTE(random_state=SEED)),
+        ("clf", RandomForestClassifier(**RF_PARAMS)),
+    ])
+    model.fit(sim[feature_cols].fillna(0).values,
+              encoder.transform(sim["urgency_label"].values))
+
+    os.makedirs(os.path.dirname(cache_path), exist_ok=True)
+    joblib.dump({"model": model, "classes": list(encoder.classes_),
+                 "feature_cols": feature_cols, "n_train": len(sim)}, cache_path)
+    return model, list(encoder.classes_)
+
+
+def _ensure_late_fusion_models():
+    global _text_model, _acoustic_model, _labels
+    with _lock:
+        if _text_model is None:
+            _text_model, labels = _build_single_model(TEXT_ONLY_COLS, TEXT_MODEL_PATH)
+            _labels = _labels or labels
+        if _acoustic_model is None:
+            _acoustic_model, labels = _build_single_model(ACOUSTIC_ONLY_COLS, ACOUSTIC_MODEL_PATH)
+            _labels = _labels or labels
+    return _text_model, _acoustic_model, _labels
+
+
 def warmup() -> None:
     """
     Load the model and feature code before the first call.
@@ -174,6 +241,7 @@ def warmup() -> None:
     model construction and librosa import cost mid-conversation.
     """
     _ensure_model()
+    _ensure_late_fusion_models()
     _frozen_module()
 
 
@@ -300,6 +368,123 @@ def classify_urgency(audio, transcript, language, session_id=None,
         result["turn_index"] = len(_sessions[str(session_id)])
 
     return result
+
+
+def classify_urgency_late_fusion(audio, transcript, language, session_id=None,
+                                 min_seconds=1.0) -> dict:
+    """
+    Same contract as classify_urgency(), but combines a text-only model
+    (Condition C) and an acoustic-only model via unweighted 0.5/0.5 late
+    fusion instead of one RF trained on all 111 concatenated features.
+
+    Validated as the strongest candidate on the flood/fire-scoped DMC
+    subset (67.3% accuracy / 65.7% High recall vs the single fused model's
+    47.3%/31.4% on the same calls) - see
+    reports/pp2_finalized_reports/SUMMARY.md section 4. Does NOT replace or
+    modify urgency_rf_v1.joblib; caches two new model files alongside it.
+    """
+    text_model, acoustic_model, classes = _ensure_late_fusion_models()
+    frozen = _frozen_module()
+
+    y = _load_audio(audio)
+    seconds = len(y) / TARGET_SR
+
+    if seconds < min_seconds:
+        return {
+            "label": None, "confidence": None, "probabilities": {},
+            "skipped": True,
+            "reason": f"turn too short ({seconds:.2f}s < {min_seconds}s)",
+            "turn_seconds": round(seconds, 2),
+        }
+
+    y = preprocess_like_training(y, TARGET_SR)
+    if y.size < TARGET_SR // 2:
+        return {
+            "label": None, "confidence": None, "probabilities": {},
+            "skipped": True,
+            "reason": "nothing left after denoise and trim (silence?)",
+            "turn_seconds": round(seconds, 2),
+        }
+
+    acoustic = frozen.extract_acoustic(y, TARGET_SR)
+    textual = text_features_from_transcript(transcript, language)
+    row = {**acoustic, **textual}
+
+    text_vector = np.array([[float(row.get(c, 0.0) or 0.0) for c in TEXT_ONLY_COLS]])
+    acoustic_vector = np.array([[float(row.get(c, 0.0) or 0.0) for c in ACOUSTIC_ONLY_COLS]])
+
+    proba_text = text_model.predict_proba(text_vector)[0]
+    proba_acoustic = acoustic_model.predict_proba(acoustic_vector)[0]
+    proba = 0.5 * proba_text + 0.5 * proba_acoustic
+    index = int(proba.argmax())
+
+    result = {
+        "label": classes[index],
+        "confidence": round(float(proba[index]), 4),
+        "probabilities": {c: round(float(p), 4) for c, p in zip(classes, proba)},
+        "skipped": False,
+        "turn_seconds": round(seconds, 2),
+        "language_normalised": textual["language_normalised"],
+        "keyword_count": round(float(textual["keyword_count"]), 2),
+        "asr_quality": round(float(textual["asr_quality"]), 3),
+        "context_score": int(textual.get("sin_context_score", 0)
+                             or textual.get("tam_context_score", 0) or 0),
+    }
+
+    # Observational only -- classify_urgency() (the single-model path) already
+    # logs this; the late-fusion path Component 2 actually calls had no
+    # logging at all, so a live misclassification was undiagnosable after the
+    # fact. Mirrors the existing log line exactly, plus the two branch
+    # probabilities so a genuine text/acoustic disagreement is visible.
+    print(
+        "[urgency-latefusion] turn "
+        + str(len(_sessions.get(str(session_id), [])) + 1)
+        + "  lang=" + str(textual["language_normalised"])
+        + "  sec=" + str(round(seconds, 1))
+        + "  kw=" + str(round(float(textual["keyword_count"]), 2))
+        + "  ctx=" + str(result["context_score"])
+        + "  asrq=" + str(round(float(textual["asr_quality"]), 2))
+        + "  fire_smoke_match=" + str(row.get("fire_smoke_match"))
+        + "  text_proba=" + str({c: round(float(p), 3) for c, p in zip(classes, proba_text)})
+        + "  acoustic_proba=" + str({c: round(float(p), 3) for c, p in zip(classes, proba_acoustic)})
+        + "  ->  " + str(result["label"])
+        + " (fused=" + str(result["probabilities"]) + ")"
+        + "  transcript=" + repr(transcript[:80])
+    )
+
+    if session_id is not None:
+        with _lock:
+            _sessions.setdefault(str(session_id), []).append(result)
+        result["turn_index"] = len(_sessions[str(session_id)])
+
+    return result
+
+
+def classify_urgency_late_fusion_async(audio, transcript, language, session_id,
+                                       min_seconds=1.0):
+    """classify_urgency_async(), but using classify_urgency_late_fusion()."""
+    if isinstance(audio, (str, os.PathLike)):
+        payload = str(audio)
+    else:
+        payload = np.array(audio, copy=True)
+
+    def _work():
+        try:
+            classify_urgency_late_fusion(payload, transcript, language,
+                                         session_id=session_id, min_seconds=min_seconds)
+        except Exception as error:
+            with _lock:
+                _sessions.setdefault(str(session_id), []).append({
+                    "label": None, "skipped": True,
+                    "reason": f"error: {error}",
+                })
+
+    thread = threading.Thread(target=_work, daemon=True,
+                              name=f"urgency-latefusion-{session_id}")
+    with _lock:
+        _pending.setdefault(str(session_id), []).append(thread)
+    thread.start()
+    return thread
 
 
 def classify_urgency_async(audio, transcript, language, session_id,

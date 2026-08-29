@@ -1,75 +1,41 @@
 """
 app.py
-Flask web interface — upload an audio file, get urgency classification.
-Run: python app.py
-Then open: http://localhost:5000
+Standalone Flask web interface - upload an audio file, get urgency
+classification. Run: python app.py, then open http://localhost:5000
+
+Uses the same validated pipeline as everything else in this project
+(integration/urgency_bridge.py: preprocess_like_training + frozen
+02_extract_features.py acoustic extraction + context_features.py Sinhala/
+Tamil scoring + the cached frozen v1 model) rather than a separate
+reimplementation, so a standalone demo run here matches every other result
+reported for this system. Whisper transcription happens here because this
+app has no upstream component supplying a transcript already.
 """
 
 import os
+import sys
 import tempfile
+
 import numpy as np
 import librosa
-import noisereduce as nr
-import joblib
 import whisper
-from collections import Counter
 from flask import Flask, request, jsonify, render_template
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_INTEGRATION_DIR = os.path.join(_HERE, "integration")
+if _INTEGRATION_DIR not in sys.path:
+    sys.path.insert(0, _INTEGRATION_DIR)
+from urgency_bridge import classify_urgency_late_fusion, warmup  # noqa: E402
 
 app = Flask(__name__)
 
-# ── Load models once at startup ───────────────────────────────────────────────
-MODELS_DIR = os.path.join(os.path.dirname(__file__), "models")
-
-print("Loading model...")
-pipeline     = joblib.load(os.path.join(MODELS_DIR, "rf_urgency.pkl"))
-le           = joblib.load(os.path.join(MODELS_DIR, "label_encoder.pkl"))
-feature_cols = joblib.load(os.path.join(MODELS_DIR, "feature_cols.pkl"))
+TARGET_SR = 16_000
 
 print("Loading Whisper...")
 whisper_model = whisper.load_model("base")
+print("Warming up urgency model...")
+warmup()
 print("Ready.")
-
-TARGET_SR = 16_000
-N_MFCC    = 40
-
-URGENCY_KEYWORDS = [
-    # ── English — sourced from keywords_heard column in labels.csv (human-confirmed)
-    # plus TF-IDF validation on actual Whisper transcripts
-    "help", "fire", "inside", "trapped", "quickly", "emergency",
-    "blood", "dying", "dead", "accident", "attack", "hurt", "injured",
-    "crash", "ambulance", "police", "gas", "smoke", "burning", "flood",
-    "workers", "grandmother", "children", "child", "baby", "unconscious",
-    "breathing", "cannot breathe", "stuck", "still inside",
-    "water", "flames", "fast",
-
-    # ── Sinhala — Whisper hallucinates on Sinhala audio (outputs Arabic/Cyrillic)
-    # Only romanised fragments that actually appeared in transcripts are kept
-    "api",       # Whisper sometimes outputs this for Sinhala "api" (we)
-    "na",        # negative particle — appears in low urgency Sinhala
-    "rush",      # Singlish urgency marker confirmed in call7
-    "inna",      # Sinhala "inna" (is/are) — appeared in call14
-
-    # ── Tamil — confirmed from actual Tamil script Whisper output ─────────────
-    "உதவி",              # help
-    "உதவி செய்யுங்கள்", # please help us
-    "உதவுங்கள்",         # help (imperative)
-    "முக்க",             # can't breathe / face (suffocation) — confirmed call21
-    "உள்ளே",             # inside / trapped inside — confirmed call23
-    "நாங்கள்",           # we — group in distress — confirmed call23
-    "வெள்ளம்",           # flood
-    "வெள்ளனிர்",         # floodwater — confirmed call23
-    "தீ",                # fire
-    "இரத்தம்",           # blood
-    "விபத்து",           # accident
-    "சிறிக்கிறோம்",      # we are trapped — confirmed call23
-    "தெரிய வில்லை",      # cannot see/don't know — distress marker call21
-    "சரியாக",            # properly (as in "not working properly") — call21
-    "தண்ணீர்",           # water (thanneer) — confirmed keywords_heard
-    "குழந்தை",           # child — confirmed keywords_heard
-    "புகை",              # smoke (pugai) — confirmed keywords_heard
-]
-
-NON_FEATURE_COLS = {"filename", "urgency_label", "language", "transcript"}
 
 URGENCY_COLORS = {
     "High":   {"color": "#e74c3c", "emoji": "🔴", "message": "Immediate response required"},
@@ -77,70 +43,6 @@ URGENCY_COLORS = {
     "Low":    {"color": "#2ecc71", "emoji": "🟢", "message": "No immediate threat"},
 }
 
-
-# ── Audio processing functions ────────────────────────────────────────────────
-
-def preprocess(path):
-    y, sr = librosa.load(path, sr=None, mono=True)
-    y = nr.reduce_noise(y=y, sr=sr)
-    y = librosa.resample(y, orig_sr=sr, target_sr=TARGET_SR)
-    y, _ = librosa.effects.trim(y, top_db=20)
-    return y
-
-
-def extract_acoustic(y):
-    feats = {}
-    mfcc = librosa.feature.mfcc(y=y, sr=TARGET_SR, n_mfcc=N_MFCC)
-    for i in range(N_MFCC):
-        feats[f"mfcc_{i+1}_mean"] = float(np.mean(mfcc[i]))
-        feats[f"mfcc_{i+1}_std"]  = float(np.std(mfcc[i]))
-
-    f0, voiced, _ = librosa.pyin(y, fmin=50, fmax=400, sr=TARGET_SR)
-    voiced_f0 = f0[voiced] if voiced is not None and voiced.any() else np.array([0.0])
-    feats["pitch_mean"] = float(np.nanmean(voiced_f0))
-    feats["pitch_std"]  = float(np.nanstd(voiced_f0))
-
-    rms = librosa.feature.rms(y=y)[0]
-    feats["rms_mean"] = float(np.mean(rms))
-    feats["rms_std"]  = float(np.std(rms))
-
-    zcr = librosa.feature.zero_crossing_rate(y)[0]
-    feats["zcr_mean"] = float(np.mean(zcr))
-
-    sc = librosa.feature.spectral_centroid(y=y, sr=TARGET_SR)[0]
-    feats["spec_centroid_mean"] = float(np.mean(sc))
-
-    hop = 512
-    voiced_frames = int(np.sum(voiced)) if voiced is not None else 0
-    feats["speaking_rate"] = voiced_frames / max(len(y) / hop, 1)
-    feats["jitter"] = float(np.mean(np.abs(np.diff(voiced_f0)))) if voiced_f0.size > 1 else 0.0
-    return feats
-
-
-def extract_textual(audio: np.ndarray):
-    result = whisper_model.transcribe(audio.astype(np.float32), task="transcribe")
-    text   = result.get("text", "").lower()
-    words  = text.split()
-    feats  = {}
-
-    feats["keyword_count"] = sum(kw.lower() in text for kw in URGENCY_KEYWORDS)
-    feats["word_count"]    = len(words)
-
-    counts   = Counter(words)
-    repeated = sum(1 for w, c in counts.items() if c > 1)
-    feats["repetition_rate"] = repeated / max(len(counts), 1)
-
-    positive = {"safe", "okay", "fine", "calm", "alright"}
-    negative = {"help", "hurt", "dying", "trapped", "fire", "blood",
-                "attack", "crash", "emergency", "pain", "dead"}
-    pos = sum(1 for w in words if w in positive)
-    neg = sum(1 for w in words if w in negative)
-    feats["sentiment_polarity"] = (pos - neg) / max(len(words), 1)
-    feats["transcript"] = result.get("text", "")
-    return feats
-
-
-# ── Routes ────────────────────────────────────────────────────────────────────
 
 @app.route("/favicon.ico")
 def favicon():
@@ -168,30 +70,29 @@ def classify():
         tmp_in_path = tmp_in.name
 
     try:
-        y = preprocess(tmp_in_path)
+        y, _ = librosa.load(tmp_in_path, sr=TARGET_SR, mono=True)
 
-        acoustic = extract_acoustic(y)
-        textual  = extract_textual(y)
+        whisper_result = whisper_model.transcribe(y.astype(np.float32), task="transcribe")
+        transcript = whisper_result.get("text", "")
+        language = whisper_result.get("language", "en")
 
-        all_feats = {**acoustic, **textual}
-        X = np.array([all_feats.get(col, 0.0) for col in feature_cols]).reshape(1, -1)
+        result = classify_urgency_late_fusion(audio=y, transcript=transcript, language=language)
 
-        pred_enc   = pipeline.predict(X)[0]
-        pred_label = le.inverse_transform([pred_enc])[0]
-        proba      = pipeline.predict_proba(X)[0]
-        class_proba = {cls: round(float(p) * 100, 1)
-                       for cls, p in zip(le.classes_, proba)}
+        if result.get("skipped"):
+            return jsonify({"error": result.get("reason", "Could not classify this audio")}), 400
 
+        pred_label = result["label"]
         info = URGENCY_COLORS[pred_label]
+        confidence_pct = {cls: round(p * 100, 1) for cls, p in result["probabilities"].items()}
 
         return jsonify({
-            "urgency":     pred_label,
-            "color":       info["color"],
-            "emoji":       info["emoji"],
-            "message":     info["message"],
-            "transcript":  textual["transcript"],
-            "keywords":    int(textual["keyword_count"]),
-            "confidence":  class_proba,
+            "urgency":    pred_label,
+            "color":      info["color"],
+            "emoji":      info["emoji"],
+            "message":    info["message"],
+            "transcript": transcript,
+            "keywords":   int(round(result.get("keyword_count", 0))),
+            "confidence": confidence_pct,
         })
 
     except Exception as e:
