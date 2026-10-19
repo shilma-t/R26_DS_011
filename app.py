@@ -17,8 +17,9 @@ project's own Sinhala fine-tune), Tamil/English via base Whisper. Chosen
 over the project's own-ASR configuration because it improves on ALL three
 evaluation views, not just one -- simulated CV acc 66.4%/F1 0.639 (vs
 63.9%/0.613), DMC n=11 scope-matched acc 80.0%/F1 0.753 (vs 67.3%/0.630),
-DMC n=59 full acc 44.8%/F1 0.431 (vs 43.7%/0.428) -- see
-scripts/analysis/04_domain_shift_and_scope/asr_source_comparison_*.py.
+DMC n=59 full acc 44.1%/F1 0.425 (vs 40.7%/0.398) -- see
+scripts/analysis/04_domain_shift_and_scope/asr_source_comparison_*.py and
+archive/paper/urgency_detection_solo_paper_v3.md Table 2 (with bootstrap CIs).
 That's a materially different result from every other tuning attempt this
 project tried (weight/threshold/HP tuning, confidence gating, a duration
 safeguard, max-confidence-wins), all of which failed on simulated CV alone

@@ -91,9 +91,11 @@ SEVERITY = {"Low": 0, "Medium": 1, "High": 2}
 # Late-fusion pair: text-only (Condition C - word_count dropped, found to be a
 # near-noise, heavily domain-shifted feature causing a Medium-class collapse
 # on real DMC calls) + acoustic-only, combined 0.5/0.5. Validated on the
-# flood/fire-scoped DMC subset (n=11) at 67.3% accuracy / 65.7% High recall,
-# vs the single fused FEATURE_COLS model's 47.3%/31.4% on the same subset.
-# See reports/pp2_finalized_reports/SUMMARY.md.
+# flood/fire-scoped DMC subset (n=11) at 80.0% accuracy / 88.6% High recall
+# under the locked ASR config, vs the single fused FEATURE_COLS model's
+# 47.3%/31.4% on the same subset. See
+# archive/reports/pp2_finalized_reports/SUMMARY.md and
+# archive/paper/urgency_detection_solo_paper_v3.md Table 2 (with bootstrap CIs).
 TEXT_ONLY_COLS = ["asr_quality", "keyword_count", "repetition_rate",
                   "sentiment_polarity"] + CONTEXT + ["fire_smoke_match"]
 ACOUSTIC_ONLY_COLS = ACOUSTIC
@@ -378,9 +380,10 @@ def classify_urgency_late_fusion(audio, transcript, language, session_id=None,
     fusion instead of one RF trained on all 111 concatenated features.
 
     Validated as the strongest candidate on the flood/fire-scoped DMC
-    subset (67.3% accuracy / 65.7% High recall vs the single fused model's
-    47.3%/31.4% on the same calls) - see
-    reports/pp2_finalized_reports/SUMMARY.md section 4. Does NOT replace or
+    subset (80.0% accuracy / 88.6% High recall under the locked ASR config,
+    vs the single fused model's 47.3%/31.4% on the same calls) - see
+    archive/reports/pp2_finalized_reports/SUMMARY.md section 4 and
+    archive/paper/urgency_detection_solo_paper_v3.md Table 2. Does NOT replace or
     modify urgency_rf_v1.joblib; caches two new model files alongside it.
     """
     text_model, acoustic_model, classes = _ensure_late_fusion_models()
