@@ -104,6 +104,117 @@
 
     .btn-upload:hover { background: #3a5bd9; }
 
+    /* Source mode tabs (Upload / Record) */
+    .mode-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .mode-tab {
+      flex: 1;
+      background: #1a1d2e;
+      border: 1px solid #2e3250;
+      color: #888;
+      padding: 10px 0;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mode-tab.active {
+      background: #1e2240;
+      border-color: #4e6ef2;
+      color: #fff;
+    }
+
+    /* Record panel */
+    .record-zone {
+      display: none;
+      width: 100%;
+      max-width: 560px;
+      border: 2px solid #2e3250;
+      border-radius: 16px;
+      background: #1a1d2e;
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    .record-zone .icon { font-size: 3rem; margin-bottom: 12px; }
+
+    .record-zone h2 { font-size: 1.1rem; color: #ddd; margin-bottom: 6px; }
+    .record-zone p { color: #666; font-size: 0.85rem; margin-bottom: 20px; }
+
+    .btn-record {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 14px 34px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-record:hover { background: #c0392b; }
+
+    .btn-record.recording {
+      background: #7a1e1e;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(231,76,60,0.5); }
+      50% { box-shadow: 0 0 0 12px rgba(231,76,60,0); }
+    }
+
+    .record-timer {
+      margin-top: 16px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+      display: none;
+    }
+
+    .record-preview {
+      display: none;
+      margin-top: 18px;
+      width: 100%;
+    }
+
+    .record-preview audio { width: 100%; }
+
+    .record-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 14px;
+    }
+
+    .btn-rerecord {
+      background: transparent;
+      border: 1px solid #2e3250;
+      color: #ccc;
+      padding: 9px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+    }
+
+    .btn-rerecord:hover { border-color: #4e6ef2; color: #fff; }
+
+    .record-hint {
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: #555;
+    }
+
     /* Selected file pill */
     .file-pill {
       display: none;
@@ -309,6 +420,12 @@
     </div>
   </header>
 
+  <!-- Source mode: Upload / Record -->
+  <div class="mode-tabs">
+    <button class="mode-tab active" id="tabUpload" onclick="setMode('upload')">📁 Upload file</button>
+    <button class="mode-tab" id="tabRecord" onclick="setMode('record')">🎙️ Record live</button>
+  </div>
+
   <!-- Drop zone -->
   <div class="drop-zone" id="dropZone">
     <div class="icon">🎙️</div>
@@ -318,6 +435,22 @@
     <button class="btn-upload" onclick="document.getElementById('fileInput').click()">
       Browse Files
     </button>
+  </div>
+
+  <!-- Record zone -->
+  <div class="record-zone" id="recordZone">
+    <div class="icon">🎙️</div>
+    <h2 id="recordTitle">Record a call directly</h2>
+    <p id="recordSubtitle">Uses your microphone — same audio you can then feed into the integrated pipeline</p>
+    <button class="btn-record" id="btnRecord" onclick="toggleRecording()">Start Recording</button>
+    <div class="record-timer" id="recordTimer">00:00</div>
+    <div class="record-preview" id="recordPreview">
+      <audio id="recordAudio" controls></audio>
+      <div class="record-actions">
+        <button class="btn-rerecord" onclick="reRecord()">↻ Re-record</button>
+      </div>
+    </div>
+    <div class="record-hint" id="recordHint"></div>
   </div>
 
   <div class="file-pill" id="filePill">
@@ -428,6 +561,100 @@
     document.getElementById('resultCard').style.display = 'none';
   }
 
+  // ---------------------------------------------------------- source mode
+  let mode = 'upload';
+  function setMode(next) {
+    mode = next;
+    document.getElementById('tabUpload').classList.toggle('active', next === 'upload');
+    document.getElementById('tabRecord').classList.toggle('active', next === 'record');
+    dropZone.style.display = next === 'upload' ? 'block' : 'none';
+    document.getElementById('recordZone').style.display = next === 'record' ? 'block' : 'none';
+    // switching modes drops whatever was selected/recorded before, so
+    // Classify never runs on stale audio from the other mode
+    selectedFile = null;
+    filePill.style.display = 'none';
+    btnAnalyse.style.display = 'none';
+    document.getElementById('resultCard').style.display = 'none';
+    document.getElementById('errorBox').style.display = 'none';
+  }
+
+  // ------------------------------------------------------------- recording
+  let mediaRecorder = null;
+  let recordedChunks = [];
+  let recordTimerHandle = null;
+  let recordSeconds = 0;
+  let micStream = null;
+
+  function fmtTime(s) {
+    const m = Math.floor(s / 60).toString().padStart(2, '0');
+    const r = (s % 60).toString().padStart(2, '0');
+    return `${m}:${r}`;
+  }
+
+  async function toggleRecording() {
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+      mediaRecorder.stop();
+      return;
+    }
+
+    const hint = document.getElementById('recordHint');
+    hint.textContent = '';
+    try {
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch (err) {
+      hint.textContent = 'Could not access the microphone — check browser permissions.';
+      return;
+    }
+
+    recordedChunks = [];
+    // audio/webm is what MediaRecorder actually produces in Chrome/Edge;
+    // the backend already accepts .webm the same as any other upload
+    // (same extension the integrated pipeline's own mic capture uses).
+    mediaRecorder = new MediaRecorder(micStream, { mimeType: 'audio/webm' });
+    mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+    mediaRecorder.onstop = () => {
+      micStream.getTracks().forEach(t => t.stop());
+      clearInterval(recordTimerHandle);
+
+      const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+      const file = new File([blob], `recording_${Date.now()}.webm`, { type: 'audio/webm' });
+
+      const audioEl = document.getElementById('recordAudio');
+      audioEl.src = URL.createObjectURL(blob);
+      document.getElementById('recordPreview').style.display = 'block';
+      document.getElementById('recordTimer').style.display = 'none';
+
+      const btn = document.getElementById('btnRecord');
+      btn.textContent = 'Start Recording';
+      btn.classList.remove('recording');
+
+      setFile(file);
+    };
+
+    mediaRecorder.start();
+    recordSeconds = 0;
+    const timerEl = document.getElementById('recordTimer');
+    timerEl.textContent = '00:00';
+    timerEl.style.display = 'block';
+    document.getElementById('recordPreview').style.display = 'none';
+    recordTimerHandle = setInterval(() => {
+      recordSeconds += 1;
+      timerEl.textContent = fmtTime(recordSeconds);
+    }, 1000);
+
+    const btn = document.getElementById('btnRecord');
+    btn.textContent = 'Stop Recording';
+    btn.classList.add('recording');
+  }
+
+  function reRecord() {
+    document.getElementById('recordPreview').style.display = 'none';
+    selectedFile = null;
+    filePill.style.display = 'none';
+    btnAnalyse.style.display = 'none';
+    document.getElementById('resultCard').style.display = 'none';
+  }
+
   async function classify() {
     if (!selectedFile) return;
 
@@ -500,6 +727,9 @@
     btnAnalyse.style.display = 'none';
     document.getElementById('resultCard').style.display = 'none';
     document.getElementById('errorBox').style.display   = 'none';
+    if (mode === 'record') {
+      document.getElementById('recordPreview').style.display = 'none';
+    }
   }
 </script>
 </body>
